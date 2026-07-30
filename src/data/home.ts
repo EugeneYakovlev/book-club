@@ -16,7 +16,7 @@ export const homeData = {
         id: 10,
         title: 'Троє в човні, якщо не рахувати собаки',
         author: 'Джером Клапка Джером',
-        image: '/images/books/boat.webp',
+        image: '/images/books/boa.webp',
         year: 1889,
         discussionDate: '28 Jul 2026',
         ratings: [
@@ -44,7 +44,7 @@ export const homeData = {
         id: 8,
         title: 'Путівник по Галактиці для космотуристів',
         author: 'Дуглас Адамс',
-        image: '/images/books/hitch.webp',
+        image: '/images/books/hit.webp',
         year: 1979,
         discussionDate: '19 May 2026',
         ratings: [
