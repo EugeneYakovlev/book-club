@@ -7,7 +7,7 @@ const NavBar = () => {
   const navList = [
     { link: '/', title: 'Головна' },
     { link: '/books', title: 'Книги'},
-    { link: '/books', title: 'Статистика'},
+    { link: '/stats', title: 'Статистика'},
     { link: '/members', title: 'Учасники'}
   ]
 

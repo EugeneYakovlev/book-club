@@ -8,7 +8,7 @@ interface Props {
 }
 
 export const BookCard = ({ book, isLowestRated, isTopRated }: Props) => {
-  const breakdown = (book.ratings ?? []).map((r) => `${r.member}: ${r.rating.value}`).join(', ')
+  const breakdown = (book.ratings ?? []).map((r) => `${r.member}: ${r.rating.label ? r.rating.label : r.rating.value}`).join(', ')
 
   return (
     <div
@@ -22,9 +22,9 @@ export const BookCard = ({ book, isLowestRated, isTopRated }: Props) => {
           {new Date(book.discussionDate).toLocaleDateString('en-GB')}
         </div>
         <div className='relative overflow-hidden rounded-2xl bg-white shadow-md ring-1 ring-black/5 transition grayscale group-hover:grayscale-0 group-hover:-translate-y-1 group-hover:shadow-xl dark:bg-neutral-900 dark:ring-white/10'>
-          {book.image && (
+          {book.cover && (
             <Image
-              src={book.image}
+              src={book.cover}
               alt={book.title}
               width={300}
               height={450}

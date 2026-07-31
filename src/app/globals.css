@@ -33,3 +33,47 @@ body {
     display: none;
   }
 }
+
+.member-card__content {
+  @apply relative;
+  @apply transition-transform duration-1000 transform-3d;
+}
+
+.member-card:hover .member-card__content {
+  @apply rotate-y-180;
+  @apply transition-transform duration-500;
+}
+
+.front,
+.back {
+  @apply absolute w-full h-full backface-hidden;
+}
+
+.back {
+  @apply rotate-y-180;
+}
+
+.link__graphic {
+  @apply absolute top-0 left-0 pointer-events-none fill-none stroke-black stroke-1;
+}
+
+.link__graphic--stroke path {
+  stroke-dasharray: 1;
+  stroke-dashoffset: 1;
+}
+
+.link:hover .link__graphic--stroke path {
+  stroke-dashoffset: 0;
+}
+
+.link__graphic--scribble {
+  @apply top-full;
+}
+
+.link__graphic--scribble path {
+  @apply transition-all duration-300;
+}
+
+.link:hover .link__graphic--scribble path {
+  @apply duration-500;
+}

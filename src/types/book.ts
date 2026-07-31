@@ -4,7 +4,7 @@ export interface Book {
   id: number,
   title: string,
   description?: string,
-  image: string,
+  cover: string,
   author: string,
   year: number,
   discussionDate: string,
