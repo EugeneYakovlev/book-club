@@ -14,7 +14,7 @@ export function getRatingsBreakdown(
       const member = membersMap.get(rating.memberId);
 
       return `${member?.name ?? "Unknown"}: ${
-        rating.rating.label || rating.rating.value
+        rating.label || rating.value
       }`;
     })
     .join(", ");
@@ -22,5 +22,5 @@ export function getRatingsBreakdown(
 
 export function getAverageBookRating(ratings: Rating[]) {
   if (!ratings || ratings.length === 0) return 0;
-  return ratings.reduce((sum, item) => sum + item.rating.value, 0) / ratings.length;
+  return ratings.reduce((sum, item) => sum + item.value, 0) / ratings.length;
 }

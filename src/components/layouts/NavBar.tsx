@@ -8,7 +8,7 @@ const NavBar = () => {
     { link: '/', title: 'Головна' },
     { link: '/books', title: 'Книги'},
     { link: '/stats', title: 'Статистика'},
-    { link: '/members', title: 'Учасники'}
+    { link: '/#members', title: 'Учасники'}
   ]
 
   const pathname = usePathname()

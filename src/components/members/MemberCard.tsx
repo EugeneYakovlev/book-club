@@ -11,10 +11,10 @@ interface Props {
 export const MemberCard = ({member}: Props) => {
   return (
     <div className='member-card group'>
-      <Link href={`/member/...`}>
+      <Link href={`/members/${member.slug}`} className='flex flex-col gap-2'>
         <div className='rounded-2xl overflow-hidden transition-all duration-300 delay-0 group-hover:shadow-2xl group-hover:delay-200'>
-          <div className='member-card__content aspect-729/1024'>
-            <div className='front'>
+          <div className='member-card__content aspect-729/1024 transition-transform duration-1000 transform-3d relative lg:group-hover:rotate-y-180 lg:group-hover:duration-500'>
+            <div className='front absolute w-full h-full backface-hidden'>
               <Image
                 src='/images/card.png'
                 alt={member.name}
@@ -23,7 +23,7 @@ export const MemberCard = ({member}: Props) => {
                 className='w-full h-full object-cover overflow-hidden rounded-xl'
               />
             </div>
-            <div className='back bg-gray-50 p-8'>
+            <div className='back absolute w-full h-full backface-hidden rotate-y-180 bg-gray-50 p-8'>
               <Image
                 src={member.pic}
                 alt={member.name}

@@ -1,4 +1,5 @@
 import Image from 'next/image'
+import Link from 'next/link'
 
 import { Section } from '@/components/layouts/Section'
 import { homeData } from '@/data/home'
@@ -47,7 +48,7 @@ const BookPage = async ({ params }: { params: Promise<{ slug: string }> }) => {
               { book.ratings.map((rating) => {
                 const currentMember = membersMap.get(rating.memberId)
                 return (
-                  <div key={rating.memberId} className='flex items-center gap-2 text-[18px] text-neutral-700 dark:text-neutral-500'>
+                  <Link key={rating.memberId} href={`/members/${currentMember?.slug}`} className='flex items-center gap-2 text-[18px] text-neutral-700 dark:text-neutral-500'>
                     <div className='rounded-full shrink-0 aspect-square w-20 h-20 overflow-hidden'>
                       <Image className='w-full h-full object-cover object-top' src={currentMember?.pic || ''} width={100} height={100} loading='lazy' alt={currentMember?.name || 'Учасник'} />
                     </div>
@@ -63,16 +64,15 @@ const BookPage = async ({ params }: { params: Promise<{ slug: string }> }) => {
                           <path d='M10 1.5l2.6 5.6 6.1.6-4.6 4.1 1.3 6-5.4-3.1-5.4 3.1 1.3-6-4.6-4.1 6.1-.6z' />
                         </svg>
                         <span className='font-semibold text-neutral-700 dark:text-neutral-300'>
-                          {rating.rating.label ? rating.rating.label : rating.rating.value}
+                          {rating.label ? rating.label : rating.value}
                         </span>
                       </div>
                     </div>
-                  </div>
+                  </Link>
                 )
               }) }
             </div>
-            <div className='mt-2 bg-amber-100 rounded-full p-4 px-8 flex items-center justify-center gap-2 text-[20px] text-neutral-700 dark:text-neutral-500'>
-              Середня оцінка: {' '}
+            <div className='mt-2 max-w-44 w-full mx-auto bg-amber-100 rounded-full p-4 px-8 pr-10 flex items-center justify-center gap-2 text-[20px] text-neutral-700 dark:text-neutral-500'>
               <svg
                 viewBox='0 0 20 20'
                 fill='currentColor'

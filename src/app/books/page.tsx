@@ -16,7 +16,7 @@ const BooksPage = () => {
   return (
     <>
       <Section eyebrow="Архів" title="Прочитані книги">
-        <div className="grid grid-cols-2 sm:grid-cols-3 gap-x-6 gap-y-8 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 mx-auto mt-12">
+        <div className="grid grid-cols-2 sm:grid-cols-3 gap-x-6 gap-y-8 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 2xl:grid-cols-7 mx-auto mt-12">
           { booksWithAverage.map((book, index) => {
             const isTopRated = book.average === highestAverage
             const isLowestRated = book.average === lowestAverage

@@ -1,7 +1,5 @@
 export interface Rating {
   memberId: number,
-  rating: {
-    value: number,
-    label: string
-  }
+  value: number,
+  label: string
 }

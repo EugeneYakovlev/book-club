@@ -25,6 +25,10 @@ body {
   @apply font-mono;
 }
 
+section + section {
+  @apply mt-24;
+}
+
 @utility scrollbar-none {
   scrollbar-width: none;
   -ms-overflow-style: none;
@@ -32,25 +36,6 @@ body {
   &::-webkit-scrollbar {
     display: none;
   }
-}
-
-.member-card__content {
-  @apply relative;
-  @apply transition-transform duration-1000 transform-3d;
-}
-
-.member-card:hover .member-card__content {
-  @apply rotate-y-180;
-  @apply transition-transform duration-500;
-}
-
-.front,
-.back {
-  @apply absolute w-full h-full backface-hidden;
-}
-
-.back {
-  @apply rotate-y-180;
 }
 
 .link__graphic {

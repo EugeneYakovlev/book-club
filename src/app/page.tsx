@@ -15,7 +15,7 @@ const App = () => {
       <Section eyebrow="Архів" title="Прочитані книги" button={{title: 'всі книги', href: '/books'}}>
         <ReadBooks {...homeData.readBooks } />
       </Section>
-      <Section eyebrow="ex-філософи" title="Учасники">
+      <Section eyebrow="ex-філософи" title="Учасники" id="members">
         <ClubMembers members={homeData.members} />
       </Section>
     </>

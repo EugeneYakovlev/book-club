@@ -22,10 +22,10 @@ export const homeData = {
         year: 1889,
         discussionDate: '28 Jul 2026',
         ratings: [
-          { memberId: 1, rating: { value: 4.25, label: '4+' } },
-          { memberId: 2, rating: { value: 3.95, label: '' } },
-          { memberId: 3, rating: { value: 3.25, label: '3+' } },
-          { memberId: 4, rating: { value: 4, label: '' } }
+          { memberId: 1, value: 4.25, label: '4+' },
+          { memberId: 2, value: 3.95, label: '' },
+          { memberId: 3, value: 3.25, label: '3+' },
+          { memberId: 4, value: 4, label: '' }
         ]
       },
       {
@@ -37,10 +37,10 @@ export const homeData = {
         year: 1937,
         discussionDate: '23 Jun 2026',
         ratings: [
-          { memberId: 1, rating: { value: 3.55, label: '' } },
-          { memberId: 2, rating: { value: 3.81, label: '' } },
-          { memberId: 3, rating: { value: 3.25, label: '3+' } },
-          { memberId: 4, rating: { value: 3, label: '' } }
+          { memberId: 1, value: 3.55, label: '' },
+          { memberId: 2, value: 3.81, label: '' },
+          { memberId: 3, value: 3.25, label: '3+' },
+          { memberId: 4, value: 3, label: '' }
         ]
       },
       {
@@ -52,10 +52,10 @@ export const homeData = {
         year: 1979,
         discussionDate: '19 May 2026',
         ratings: [
-          { memberId: 1, rating: { value: 4.42, label: '' } },
-          { memberId: 2, rating: { value: 4.2, label: '' } },
-          { memberId: 3, rating: { value: 4.25, label: '4+' } },
-          { memberId: 4, rating: { value: 4, label: '' } }
+          { memberId: 1, value: 4.42, label: '' },
+          { memberId: 2, value: 4.2, label: '' },
+          { memberId: 3, value: 4.25, label: '4+' },
+          { memberId: 4, value: 4, label: '' }
         ]
       },
       {
@@ -67,10 +67,10 @@ export const homeData = {
         year: 1872,
         discussionDate: '28 Apr 2026',
         ratings: [
-          { memberId: 1, rating: { value: 3.5, label: '' } },
-          { memberId: 2, rating: { value: 2.49, label: '' } },
-          { memberId: 3, rating: { value: 3, label: '' } },
-          { memberId: 4, rating: { value: 4, label: '' } }
+          { memberId: 1, value: 3.5, label: '' },
+          { memberId: 2, value: 2.49, label: '' },
+          { memberId: 3, value: 3, label: '' },
+          { memberId: 4, value: 4, label: '' }
         ]
       },
       {
@@ -82,10 +82,10 @@ export const homeData = {
         year: 1963,
         discussionDate: '31 Mar 2026',
         ratings: [
-          { memberId: 1, rating: { value: 3.98, label: '' } },
-          { memberId: 2, rating: { value: 3.85, label: '' } },
-          { memberId: 3, rating: { value: 4, label: '' } },
-          { memberId: 4, rating: { value: 4, label: '' } }
+          { memberId: 1, value: 3.98, label: '' },
+          { memberId: 2, value: 3.85, label: '' },
+          { memberId: 3, value: 4, label: '' },
+          { memberId: 4, value: 4, label: '' }
         ]
       },
        {
@@ -97,10 +97,10 @@ export const homeData = {
         year: 1926,
         discussionDate: '10 Mar 2026', // взято кінцеву дату з 24.02.26 / 10.03.26
         ratings: [
-          { memberId: 1, rating: { value: 4, label: '' } },
-          { memberId: 2, rating: { value: 3.75, label: '' } },
-          { memberId: 3, rating: { value: 4.25, label: '4+' } },
-          { memberId: 4, rating: { value: 5, label: '' } }
+          { memberId: 1, value: 4, label: '' },
+          { memberId: 2, value: 3.75, label: '' },
+          { memberId: 3, value: 4.25, label: '4+' },
+          { memberId: 4, value: 5, label: '' }
         ]
       },
       {
@@ -112,10 +112,10 @@ export const homeData = {
         year: 1943,
         discussionDate: '02 Feb 2026',
         ratings: [
-          { memberId: 1, rating: { value: 5, label: '' } },
-          { memberId: 2, rating: { value: 4.95, label: '' } },
-          { memberId: 3, rating: { value: 5, label: '' } },
-          { memberId: 4, rating: { value: 5, label: '' } }
+          { memberId: 1, value: 5, label: '' },
+          { memberId: 2, value: 4.95, label: '' },
+          { memberId: 3, value: 5, label: '' },
+          { memberId: 4, value: 5, label: '' }
         ]
       },
       {
@@ -127,10 +127,10 @@ export const homeData = {
         year: 1843,
         discussionDate: '20 Jan 2026',
         ratings: [
-          { memberId: 1, rating: { value: 4.78, label: '' } },
-          { memberId: 2, rating: { value: 4.21, label: '' } },
-          { memberId: 3, rating: { value: 4.25, label: '4+' } },
-          { memberId: 4, rating: { value: 5, label: '' } }
+          { memberId: 1, value: 4.78, label: '' },
+          { memberId: 2, value: 4.21, label: '' },
+          { memberId: 3, value: 4.25, label: '4+' },
+          { memberId: 4, value: 5, label: '' }
         ]
       },
       {
@@ -142,10 +142,10 @@ export const homeData = {
         year: 1993,
         discussionDate: '12 Dec 2025',
         ratings: [
-          { memberId: 1, rating: { value: 4.25, label: '4+' } },
-          { memberId: 2, rating: { value: 4.58, label: '' } },
-          { memberId: 3, rating: { value: 4.75, label: '5-' } },
-          { memberId: 4, rating: { value: 4, label: '' } }
+          { memberId: 1, value: 4.25, label: '4+' },
+          { memberId: 2, value: 4.58, label: '' },
+          { memberId: 3, value: 4.75, label: '5-' },
+          { memberId: 4, value: 4, label: '' }
         ]
       },
       {
@@ -157,10 +157,10 @@ export const homeData = {
         year: 1942,
         discussionDate: '25 Oct 2025',
         ratings: [
-          { memberId: 1, rating: { value: 4, label: '' } },
-          { memberId: 2, rating: { value: 3, label: '' } },
-          { memberId: 3, rating: { value: 3.75, label: '4-' } },
-          { memberId: 4, rating: { value: 2.5, label: '2-3, ну 3' } }
+          { memberId: 1, value: 4, label: '' },
+          { memberId: 2, value: 3, label: '' },
+          { memberId: 3, value: 3.75, label: '4-' },
+          { memberId: 4, value: 2.5, label: '2-3, ну 3' }
         ]
       }
     ]
@@ -169,21 +169,29 @@ export const homeData = {
   members: [
     {
       id: 1,
+      slug: 'eugene',
+      role: 'головний валет',
       name: 'Юджин',
       pic: '/images/members/p1.webp'
     },
     {
       id: 2,
+      slug: 'yura',
+      role: 'головний детектив',
       name: 'Юра',
       pic: '/images/members/p2.webp'
     },
     {
       id: 3,
+      slug: 'kolya',
+      role: 'головний бубновий валет',
       name: 'Коля',
       pic: '/images/members/p3.webp'
     },
     {
       id: 4,
+      slug: 'max',
+      role: 'головний критик',
       name: 'Макс',
       pic: '/images/members/p4.webp'
     }

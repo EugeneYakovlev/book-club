@@ -7,12 +7,13 @@ interface Props {
     href: string,
     title: string
   },
+  id?: string,
   children: React.ReactNode
 }
 
-export const Section = ({title, eyebrow, button, children}: Props) => {
+export const Section = ({title, eyebrow, button, id, children}: Props) => {
   return ( 
-    <section className="my-16 xl:my-32 px-4">
+    <section className="my-16 px-4" id={id}>
       <div className="text-center">
         { eyebrow && (
           <span className="inline-block rounded-full bg-indigo-50 px-4 py-1 text-xs font-semibold tracking-wider text-indigo-600 uppercase">
