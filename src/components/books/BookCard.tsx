@@ -1,18 +1,24 @@
 import Image from "next/image";
+import Link from "next/link";
+
 import type { Book } from '@/types/book'
+import { homeData } from "@/data/home";
+import { getRatingsBreakdown } from "@/utils/books";
 
 interface Props {
   book: Book,
   isLowestRated: boolean,
-  isTopRated: boolean
+  isTopRated: boolean,
+  grayscale?: boolean
 }
 
-export const BookCard = ({ book, isLowestRated, isTopRated }: Props) => {
-  const breakdown = (book.ratings ?? []).map((r) => `${r.member}: ${r.rating.label ? r.rating.label : r.rating.value}`).join(', ')
+export const BookCard = ({ book, isLowestRated, isTopRated, grayscale }: Props) => {
+  const breakdown = getRatingsBreakdown(book.ratings ?? [], homeData.members);
 
   return (
-    <div
-      className='group flex flex-col justify-between w-36 shrink-0 snap-start sm:w-44 md:w-54'
+    <Link
+      href={`/books/${book.slug}`}
+      className='group flex flex-col justify-between w-full shrink-0 snap-start sm:max-w-54'
       key={book.id}>
       <div>
         <div className='mx-auto flex h-6 w-6 items-center justify-center rounded-full bg-amber-100 text-[11px] font-semibold text-amber-900 shadow-sm'>
@@ -21,13 +27,14 @@ export const BookCard = ({ book, isLowestRated, isTopRated }: Props) => {
         <div className='mt-2 mb-3 text-[12px] text-neutral-700 text-center dark:text-neutral-500'>
           {new Date(book.discussionDate).toLocaleDateString('en-GB')}
         </div>
-        <div className='relative overflow-hidden rounded-2xl bg-white shadow-md ring-1 ring-black/5 transition grayscale group-hover:grayscale-0 group-hover:-translate-y-1 group-hover:shadow-xl dark:bg-neutral-900 dark:ring-white/10'>
+        <div className={`relative overflow-hidden rounded-2xl bg-white shadow-md ring-1 ring-black/5 lg:transition ${grayscale ? 'lg:grayscale' : ''} lg:group-hover:grayscale-0 lg:group-hover:-translate-y-1 lg:group-hover:shadow-xl dark:bg-neutral-900 dark:ring-white/10`}>
           {book.cover && (
             <Image
               src={book.cover}
               alt={book.title}
               width={300}
               height={450}
+              loading='lazy'
               className='aspect-2/3 w-full object-cover'
             />
           )}
@@ -52,9 +59,13 @@ export const BookCard = ({ book, isLowestRated, isTopRated }: Props) => {
         <span className='relative top-0.5 text-[14px] font-semibold text-neutral-700 dark:text-neutral-300'>
           {book.average && book.average.toFixed(2)}
         </span>
-        {isTopRated && <span title='Найвищий рейтинг'>🔥</span>}
-        {isLowestRated && <span title='Найвищий рейтинг'>💩</span>}
+        {isTopRated || isLowestRated && (
+          <span className='relative top-0.5'>
+            {isTopRated && '🔥'}
+            {isLowestRated && '💩'}
+          </span>
+        )}
       </div>
-    </div>
+    </Link>
   )
 }

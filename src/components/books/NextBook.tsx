@@ -7,13 +7,14 @@ interface Props {
 
 export const NextBook = ({ book }: Props) => {
   return (
-    <div className='mx-auto mt-8 max-w-5xl overflow-hidden rounded-3xl bg-white shadow-xl ring-1 transition hover:shadow-2xl ring-black/5 md:flex dark:bg-neutral-900 dark:ring-white/10'>
+    <div className='mt-8 max-w-5xl mx-auto overflow-hidden rounded-3xl bg-white shadow-xl ring-1 transition hover:shadow-2xl ring-black/5 md:flex dark:bg-neutral-900 dark:ring-white/10'>
       <div className='mx-auto w-48 shrink-0 p-6 sm:w-56 md:mx-0 md:w-72 md:p-8'>
         <Image
           src={book.cover}
           alt={book.title}
           width={296}
           height={496}
+          loading='eager'
           className='w-full rounded-xl object-cover shadow-lg'
         />
       </div>

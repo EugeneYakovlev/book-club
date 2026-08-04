@@ -1,5 +1,5 @@
 export interface Rating {
-  member: string,
+  memberId: number,
   rating: {
     value: number,
     label: string

@@ -1,20 +1,16 @@
 import type { Book } from "@/types/book";
-import type { Rating } from "@/types/rating";
 import { BookCard } from "./BookCard";
+import { getAverageBookRating } from "@/utils/books";
 
 interface Props {
   books: Book[]
 }
 
 export const ReadBooks = ({books}: Props) => {
-  function getAverage(ratings: Rating[]) {
-    if (!ratings || ratings.length === 0) return 0;
-    return ratings.reduce((sum, item) => sum + item.rating.value, 0) / ratings.length;
-  }
 
   const booksWithAverage = books.map((book) => ({
     ...book,
-    average: getAverage(book.ratings ?? []),
+    average: getAverageBookRating(book.ratings ?? []),
   }))
 
   const highestAverage = Math.max(...booksWithAverage.map((book) => book.average))
@@ -28,7 +24,7 @@ export const ReadBooks = ({books}: Props) => {
           const isLowestRated = book.average === lowestAverage
 
           return (
-            <BookCard book={book} isLowestRated={isLowestRated} isTopRated={isTopRated} key={index} />
+            <BookCard book={book} isLowestRated={isLowestRated} isTopRated={isTopRated} key={index} grayscale={true} />
           )
         })}
       </div>
