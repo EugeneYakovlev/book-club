@@ -47,8 +47,10 @@ section + section {
   stroke-dashoffset: 1;
 }
 
-.link:hover .link__graphic--stroke path {
-  stroke-dashoffset: 0;
+@media all and (min-width: 1024px) {
+  .link:hover .link__graphic--stroke path {
+    stroke-dashoffset: 0;
+  }
 }
 
 .link__graphic--scribble {
@@ -60,5 +62,5 @@ section + section {
 }
 
 .link:hover .link__graphic--scribble path {
-  @apply duration-500;
+  @apply lg:duration-500;
 }

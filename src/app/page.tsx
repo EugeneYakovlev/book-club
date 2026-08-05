@@ -12,7 +12,7 @@ const App = () => {
       <Section eyebrow="Наступна книга" title="Читаємо в Серпні">
         <NextBook book={homeData.nextBook} />
       </Section>
-      <Section eyebrow="Архів" title="Прочитані книги" button={{title: 'всі книги', href: '/books'}}>
+      <Section eyebrow="Архів" title="Прочитані книги">
         <ReadBooks {...homeData.readBooks } />
       </Section>
       <Section eyebrow="ex-філософи" title="Учасники" id="members">

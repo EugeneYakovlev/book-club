@@ -184,7 +184,7 @@ export const homeData = {
     {
       id: 3,
       slug: 'kolya',
-      role: 'головний бубновий валет',
+      role: 'головний по дедлайнам',
       name: 'Коля',
       pic: '/images/members/p3.webp'
     },
