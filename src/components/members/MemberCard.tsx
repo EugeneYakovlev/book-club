@@ -34,7 +34,7 @@ export const MemberCard = ({member}: Props) => {
             </div>
           </div>
         </div>
-        <div className='pt-4 text-center text-[18px]'>{member.name}</div>
+        <div className='pt-4 text-center text-[14px] font-semibold tracking-tight'>{member.role}</div>
       </Link>
     </div>
   )

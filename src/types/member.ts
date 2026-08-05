@@ -5,7 +5,8 @@ export interface Member {
   id: number,
   slug: string,
   name: string,
-  pic: string
+  pic: string,
+  role?: string
 }
 
 export interface MemberBookRating {

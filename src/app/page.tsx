@@ -15,7 +15,7 @@ const App = () => {
       <Section eyebrow="Архів" title="Прочитані книги">
         <ReadBooks {...homeData.readBooks } />
       </Section>
-      <Section eyebrow="ex-філософи" title="Учасники" id="members">
+      <Section eyebrow="учасники" title="Чотири вальта" id="members">
         <ClubMembers members={homeData.members} />
       </Section>
     </>

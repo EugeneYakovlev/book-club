@@ -170,28 +170,28 @@ export const homeData = {
     {
       id: 1,
       slug: 'eugene',
-      role: 'головний валет',
+      role: 'валет головний',
       name: 'Юджин',
       pic: '/images/members/p1.webp'
     },
     {
       id: 2,
       slug: 'yura',
-      role: 'головний детектив',
+      role: 'валет детектив',
       name: 'Юра',
       pic: '/images/members/p2.webp'
     },
     {
       id: 3,
       slug: 'kolya',
-      role: 'головний по дедлайнам',
+      role: 'валет по дедлайнам (бубновий)',
       name: 'Коля',
       pic: '/images/members/p3.webp'
     },
     {
       id: 4,
       slug: 'max',
-      role: 'головний критик',
+      role: 'валет критик',
       name: 'Макс',
       pic: '/images/members/p4.webp'
     }
