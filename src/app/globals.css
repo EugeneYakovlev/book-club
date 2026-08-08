@@ -64,3 +64,41 @@ section + section {
 .link:hover .link__graphic--scribble path {
   @apply lg:duration-500;
 }
+
+table tbody tr:last-child td, table tbody tr:last-child th {
+  @apply border-b-0;
+}
+
+table.draw-heatmap {
+  .rating-1 {
+    @apply bg-rose-200;
+  }
+
+  .rating-2 {
+    @apply bg-rose-100;
+  }
+
+  .rating-3 {
+    @apply bg-rose-50;
+  }
+
+  .rating-4 {
+    @apply bg-yellow-50;
+  }
+
+  .rating-5 {
+    @apply bg-lime-50;
+  }
+
+  .rating-6 {
+    @apply bg-emerald-50;
+  }
+
+  .rating-7 {
+    @apply bg-green-100;
+  }
+
+  .rating-8 {
+    @apply bg-emerald-100;
+  }
+}
