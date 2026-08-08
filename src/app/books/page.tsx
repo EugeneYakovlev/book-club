@@ -25,7 +25,7 @@ const BooksPage = () => {
             <div className="flex flex-col gap-5 border-b border-slate-200/70 pb-6 dark:border-white/10 sm:flex-row sm:items-end sm:justify-between">
               <div>
                 <p className="text-xs font-bold uppercase tracking-[0.18em] text-violet-600 dark:text-violet-300">Бібліотека клубу</p>
-                <p className="mt-2 max-w-lg text-sm leading-6 text-slate-500 dark:text-slate-400">Усі прочитані книги, оцінки та історії наших обговорень — в одному каталозі.</p>
+                <p className="mt-2 max-w-lg text-sm leading-none text-slate-500 dark:text-slate-400">Усі прочитані книги, оцінки та історії наших обговорень — в одному каталозі.</p>
               </div>
               <div className="flex items-center gap-3">
                 <div className="rounded-2xl border border-white/70 bg-white/75 px-4 py-3 text-center shadow-sm backdrop-blur dark:border-white/10 dark:bg-white/5">
