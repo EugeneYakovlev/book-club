@@ -14,6 +14,7 @@ interface Props {
 }
 export const BooksTableBody = ({ books, members, displayAverageRow }: Props) => {
   return (
+    <>
     <tbody>
       {members.map((member) => {
         const ratingsByBook = new Map(
@@ -60,6 +61,8 @@ export const BooksTableBody = ({ books, members, displayAverageRow }: Props) => 
           </tr>
         )
       })}
+    </tbody>
+    <tbody>
       <tr className={`${displayAverageRow ? '' : 'hidden'}`}>
         <th
           scope='col'
@@ -88,5 +91,6 @@ export const BooksTableBody = ({ books, members, displayAverageRow }: Props) => 
         })}
       </tr>
     </tbody>
+    </>
   )
 }

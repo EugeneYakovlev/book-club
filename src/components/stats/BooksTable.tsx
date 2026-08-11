@@ -39,7 +39,7 @@ export const BooksTable = ({ books, members, hideControls }: Props) => {
       ? members
       : members.filter((member) => selectedMembers.includes(member.id))
   return (
-    <>
+    <div className='mx-auto mt-8 relative'>
       {!hideControls && (
         <BookTableControls
           members={members}
@@ -59,6 +59,6 @@ export const BooksTable = ({ books, members, hideControls }: Props) => {
           <BooksTableBody books={books} members={visibleMembers} displayAverageRow={isAverageRowDisplayed} />
         </table>
       </div>
-    </>
+    </div>
   )
 }

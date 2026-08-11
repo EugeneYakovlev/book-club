@@ -5,7 +5,7 @@ import { homeData } from '@/data/home'
 import { getMemberAverageRating, getMemberBooksCount, getMemberHighestRating, getMemberLowestRating, getMemberRatings } from '@/utils/member'
 import { AverageRatingRow } from '@/components/members/member/AverageRatingRow'
 import { RatingHighlight } from '@/components/members/member/RatingHighlight'
-import { RatedBooks } from '@/components/members/member/RatedBooks'
+import { BooksTable } from '@/components/stats/BooksTable'
 
 const MemberPage = async ({ params }: { params: Promise<{ slug: string }> }) => {
   const { slug } = await params
@@ -52,7 +52,7 @@ const MemberPage = async ({ params }: { params: Promise<{ slug: string }> }) => 
         </div>
       </Section>
       <Section title='Усі оцінки'>
-        <RatedBooks memberRatings={memberRatings} />
+        <BooksTable members={[member]} books={homeData.readBooks.books} hideControls />
       </Section>
     </>
   )

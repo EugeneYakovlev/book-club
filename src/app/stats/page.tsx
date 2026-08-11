@@ -16,9 +16,7 @@ const StatsPage = () => {
 
   return (
     <Section eyebrow='Статистика'>
-      <div className='mx-auto mt-8 relative'>
-        <BooksTable books={books} members={members} />
-      </div>
+      <BooksTable books={books} members={members} />
     </Section>
   )
 }
