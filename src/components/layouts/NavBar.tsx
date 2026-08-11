@@ -15,8 +15,8 @@ const NavBar = () => {
   const pathname = usePathname()
 
   return (
-    <header className="fixed inset-x-0 top-0 z-50 px-3 pt-3 sm:px-5">
-      <nav className="mx-auto flex h-14 max-w-5xl items-center justify-center sm:justify-between rounded-2xl border border-slate-200/80 bg-white/80 px-2.5 shadow-[0_14px_35px_-22px_rgba(49,46,129,0.5)] backdrop-blur-xl dark:border-white/10 dark:bg-slate-950/75 sm:px-3 sm:pl-8">
+    <header className="fixed mx-auto max-w-5xl inset-x-0 top-0 z-50 px-3 pt-3 sm:px-5">
+      <nav className="mx-auto flex h-14 items-center justify-center sm:justify-between rounded-2xl border border-slate-200/80 bg-white/80 px-2.5 shadow-[0_14px_35px_-22px_rgba(49,46,129,0.5)] backdrop-blur-xl dark:border-white/10 dark:bg-slate-950/75 sm:px-3 sm:pl-8">
         <Link className="group hidden sm:flex items-center gap-2.5 rounded-xl py-1 pr-1.5 text-slate-900 dark:text-white" href='/' aria-label='Book Club — головна'>
           <span className="text-lg font-bold uppercase tracking-[-0.06em] block">
             Book Club
