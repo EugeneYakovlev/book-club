@@ -102,3 +102,22 @@ table.draw-heatmap {
     @apply bg-emerald-100;
   }
 }
+
+.controversy-6 {
+  @apply text-red-700;
+}
+.controversy-5 {
+  @apply text-red-400;
+}
+.controversy-4 {
+  @apply text-yellow-400;
+}
+.controversy-3 {
+  @apply text-emerald-300;
+}
+.controversy-2 {
+  @apply text-emerald-500;
+}
+.controversy-1 {
+  @apply text-emerald-600;
+}

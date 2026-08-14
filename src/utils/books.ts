@@ -25,6 +25,25 @@ export function getAverageBookRating(ratings: Rating[]) {
   return ratings.reduce((sum, item) => sum + item.value, 0) / ratings.length;
 }
 
+export function getControversyBookRating(ratings: Rating[]) {
+  const values = ratings.map((rating) => rating.value)
+
+  if (values.length === 0) {
+    return null
+  }
+
+  const average =
+    values.reduce((sum, value) => sum + value, 0) / values.length
+
+  const variance =
+    values.reduce(
+      (sum, value) => sum + Math.pow(value - average, 2),
+      0
+    ) / values.length
+
+  return Math.sqrt(variance)
+}
+
 export function getRatingLevel(value: number) {
   if (value < 2) return 1;
   if (value < 2.5) return 2;
@@ -35,4 +54,14 @@ export function getRatingLevel(value: number) {
   if (value < 5) return 7;
 
   return 8;
+}
+
+export function getControversyLevel(value: number) {
+  if(value < 0.2) return 1;
+  if(value < 0.4) return 2;
+  if(value < 0.6) return 3;
+  if(value < 1) return 4;
+  if(value < 1.5) return 5;
+
+  return 6;
 }

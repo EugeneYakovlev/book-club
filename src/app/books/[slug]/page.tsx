@@ -1,7 +1,8 @@
+import Link from 'next/link'
 import { Section } from '@/components/layouts/Section'
 import { homeData } from '@/data/home'
 
-import { getAverageBookRating } from '@/utils/books'
+import { getAverageBookRating, getControversyBookRating, getControversyLevel } from '@/utils/books'
 import { DiscussionDateRow } from '@/components/books/book/DiscussionDateRow'
 import { MemberRating } from '@/components/books/book/MemberRating'
 import { BookCoverWithRating } from '@/components/books/book/BookCoverWithRating'
@@ -13,12 +14,14 @@ const BookPage = async ({ params }: { params: Promise<{ slug: string }> }) => {
   const book = homeData.readBooks.books.find((book) => book.slug === slug)
 
   if (!book) {
-    return <>Такої книги немає</>
+    return <div className='text-center mt-8'>Такої книги немає</div>
   }
 
   const membersMap = new Map(homeData.members.map((member) => [member.id, member]))
   const ratings = book.ratings ?? []
   const averageRating = getAverageBookRating(ratings)
+
+  const controversyRating = getControversyBookRating(ratings)
 
   return (
     <>
@@ -50,6 +53,14 @@ const BookPage = async ({ params }: { params: Promise<{ slug: string }> }) => {
                   )
                 }) }
               </div>
+              <Link href='/stats/#controversy-table' className='mt-7 flex items-end justify-between gap-4'>
+                <div>
+                  <p className='text-xs font-bold uppercase tracking-[0.18em] text-slate-400 dark:text-slate-500'>Рейтинг суперечливості</p>
+                </div>
+                <div className={`flex items-center gap-2 dark:text-slate-200 controversy-${getControversyLevel(controversyRating || 0)}`}>
+                  <span className='text-3xl font-black tracking-tight'>{controversyRating?.toFixed(2)}</span>
+                </div>
+              </Link>
             </div>
           </div>
         </div>

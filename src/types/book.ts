@@ -10,5 +10,6 @@ export interface Book {
   year: number,
   discussionDate: string,
   ratings?: Rating[],
-  average?: number
+  average?: number,
+  controversy?: number | null
 }
