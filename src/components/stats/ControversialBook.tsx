@@ -51,7 +51,7 @@ export const ControversialBook = ({ books }: Props) => {
           </div>
         </Link>
 
-        <div className='divide-y divide-slate-200/70 overflow-hidden rounded-[1.6rem] border border-white/70 bg-white/70 dark:divide-white/10 dark:border-white/10 dark:bg-white/5 grid grid-cols-2 gap-x-4'>
+        <div className='divide-y divide-slate-200/70 overflow-hidden rounded-[1.6rem] border border-white/70 bg-white/70 dark:divide-white/10 dark:border-white/10 dark:bg-white/5 grid md:grid-cols-2 lg:grid-cols-1 xl:grid-cols-2 gap-x-4'>
           {otherBooks.map((book, index) => (
             <Link key={book.id} href={`/books/${book.slug}`} className='group flex items-center gap-3 px-2 transition hover:bg-white/80 dark:hover:bg-white/5 sm:gap-4 py-4'>
               <span className='w-2 text-center text-xs font-black tabular-nums text-slate-400 dark:text-slate-500'>{index + 2}</span>

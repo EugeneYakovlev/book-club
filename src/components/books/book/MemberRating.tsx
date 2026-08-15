@@ -2,7 +2,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 
 import type { Rating } from '@/types/rating'
-import { Member } from '@/types/member'
+import type { Member } from '@/types/member'
 
 interface Props {
   rating: Rating,

@@ -1,5 +1,5 @@
-import { Member } from '@/types/member'
-import { Book } from '@/types/book'
+import type { Member } from '@/types/member'
+import type { Book } from '@/types/book'
 
 import Image from 'next/image'
 import Link from 'next/link'

@@ -3,7 +3,7 @@
 import { useState } from 'react'
 
 import type { Book } from '@/types/book'
-import { Member } from '@/types/member'
+import type { Member } from '@/types/member'
 
 import { BooksTableHeader } from './BookTable/BooksTableHeader'
 import { BooksTableBody } from './BookTable/BooksTableBody'
