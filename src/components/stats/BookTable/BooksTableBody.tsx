@@ -47,7 +47,7 @@ export const BooksTableBody = ({ books, members, displayAverageRow }: Props) => 
               return (
                 <td
                   key={book.id}
-                  className={`h-20 border-b border-slate-200 p-3 text-center transition-colors group-hover:bg-violet-50/50  rating-${getRatingLevel(rating?.value || 0)}`}>
+                  className={`h-20 border-b border-slate-200 p-3 text-center transition-colors group-hover:bg-violet-50/50  ${rating ? `rating-${getRatingLevel(rating.value)}` : ''}`}>
                   {rating ? (
                     <span className='inline-flex items-center font-bold text-base tabular-nums'>
                       {rating.label || rating.value}

@@ -26,7 +26,7 @@ const StatsPage = () => {
         <Section eyebrow='Яблуко розбрату'>
           <ControversialBook books={books} />
         </Section>
-        <div>
+        <div id='critics'>
           <Section eyebrow='Оцінювання'>
             <CriticsRating books={books} members={members} />
           </Section>

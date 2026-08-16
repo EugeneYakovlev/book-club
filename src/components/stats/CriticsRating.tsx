@@ -16,7 +16,7 @@ export const CriticsRating = ({ books, members }: Props) => {
   const categories = [
     {
       leaders:  getLeadersFromMembers(loyalMembers),
-      title: 'Найщедріший читач',
+      title: 'Найлояльніший читач',
       description: 'Найчастіше ставив найвищу оцінку',
       countLabel: 'найвищих оцінок',
       tone: 'emerald'

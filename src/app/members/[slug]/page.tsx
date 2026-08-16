@@ -1,8 +1,9 @@
 import Image from 'next/image'
+import Link from 'next/link'
 
 import { Section } from '@/components/layouts/Section'
 import { homeData } from '@/data/home'
-import { getMemberAverageRating, getMemberBooksCount, getMemberHighestRating, getMemberLowestRating, getMemberRatings } from '@/utils/member'
+import { getMemberAverageRating, getMemberBooksCount, getMemberHighestRating, getMemberLowestRating, getMemberRatings, getMemberRatingCounts, getLeadersFromMembers } from '@/utils/member'
 import { AverageRatingRow } from '@/components/members/member/AverageRatingRow'
 import { RatingHighlight } from '@/components/members/member/RatingHighlight'
 import { BooksTable } from '@/components/stats/BooksTable'
@@ -23,6 +24,11 @@ const MemberPage = async ({ params }: { params: Promise<{ slug: string }> }) => 
   const lowestRating = getMemberLowestRating(memberRatings);
   const booksCount = getMemberBooksCount(memberRatings);
 
+  const loyalMembers = getMemberRatingCounts(homeData.readBooks.books, 'highest')
+  const criticMembers = getMemberRatingCounts(homeData.readBooks.books, 'lowest')
+  const loyalLeader = getLeadersFromMembers(loyalMembers).find((leader) => leader.memberId === member.id)
+  const criticLeader = getLeadersFromMembers(criticMembers).find((leader) => leader.memberId === member.id)
+
   return (
     <>
       <Section eyebrow={member.role} title={member.name}>
@@ -39,6 +45,28 @@ const MemberPage = async ({ params }: { params: Promise<{ slug: string }> }) => 
             </div>
             <div className='pt-5 md:pt-0'>
               <AverageRatingRow label='Середня оцінка' averageRating={averageRating} />
+              {(loyalLeader || criticLeader) && (
+                <div className='mt-4 flex flex-wrap gap-2'>
+                  {loyalLeader && (
+                    <Link href='/stats#critics' className='group relative inline-flex items-center gap-1.5 rounded-full bg-emerald-100 px-3 py-1.5 text-[10px] font-bold uppercase tracking-[0.12em] text-emerald-700 dark:bg-emerald-400/10 dark:text-emerald-300'>
+                      Найлояльніший читач
+                      <span className='flex pl-px h-4 w-4 items-center text-center justify-center rounded-full border border-current text-[9px] normal-case leading-none'>i</span>
+                      <span role='tooltip' className='pointer-events-none absolute max-md:bottom-full max-md:left-0 md:left-full md:ml-4 z-20 mb-2 w-58 rounded-xl bg-slate-900 px-3 py-2 text-left text-[11px] font-medium normal-case leading-4 tracking-normal text-white opacity-0 shadow-lg transition duration-200 group-hover:opacity-100 group-focus:opacity-100 dark:bg-white dark:text-slate-900'>
+                        Поставив найбільшу кількість найвищих оцінок: {loyalLeader.count}
+                      </span>
+                    </Link>
+                  )}
+                  {criticLeader && (
+                    <Link href='/stats#critics' className='group relative inline-flex items-center gap-1.5 rounded-full bg-rose-100 px-3 py-1.5 text-[10px] font-bold uppercase tracking-[0.12em] text-rose-700 dark:bg-rose-400/10 dark:text-rose-300'>
+                      Найсуворіший критик
+                      <span className='flex pl-px h-4 w-4 items-center justify-center rounded-full border border-current text-[9px] normal-case leading-none'>i</span>
+                      <span role='tooltip' className='pointer-events-none absolute max-md:bottom-full max-md:left-0 md:left-full md:ml-4 z-20 mb-2 w-58 rounded-xl bg-slate-900 px-3 py-2 text-left text-[11px] font-medium normal-case leading-4 tracking-normal text-white opacity-0 shadow-lg transition duration-200 group-hover:opacity-100 group-focus:opacity-100 dark:bg-white dark:text-slate-900'>
+                        Поставив найбільшу кількість найнижчих оцінок: {criticLeader.count}
+                      </span>
+                    </Link>
+                  )}
+                </div>
+              )}
               <div className='mt-6 grid gap-3 sm:grid-cols-2'>
                 {highestRating && (
                   <RatingHighlight label='Найвища оцінка' rating={highestRating} tone='highest' />
