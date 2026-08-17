@@ -5,6 +5,7 @@ import { Section } from '@/components/layouts/Section'
 import { BooksTable } from '@/components/stats/BooksTable'
 import { ControversialBook } from '@/components/stats/ControversialBook'
 import { CriticsRating } from '@/components/stats/CriticsRating'
+import { RatingsChart } from '@/components/stats/RatingsChart'
 
 import { getAverageBookRating, getControversyBookRating } from '@/utils/books'
 
@@ -27,8 +28,11 @@ const StatsPage = () => {
           <ControversialBook books={books} />
         </Section>
         <div id='critics'>
-          <Section eyebrow='Оцінювання'>
+          <Section eyebrow='Леґенди'>
             <CriticsRating books={books} members={members} />
+          </Section>
+          <Section eyebrow='Оцінювання'>
+            <RatingsChart books={books} />
           </Section>
         </div>
       </div>

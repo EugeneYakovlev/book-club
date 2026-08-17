@@ -17,14 +17,14 @@ export const CriticsRating = ({ books, members }: Props) => {
     {
       leaders:  getLeadersFromMembers(loyalMembers),
       title: 'Найлояльніший читач',
-      description: 'Найчастіше ставив найвищу оцінку',
+      description: 'Найчастіше ставив найвищу оцінку книзі',
       countLabel: 'найвищих оцінок',
       tone: 'emerald'
     },
     {
       leaders: getLeadersFromMembers(criticMembers),
       title: 'Найсуворіший критик',
-      description: 'Найчастіше ставив найнижчу оцінку',
+      description: 'Найчастіше ставив найнижчу оцінку книзі',
       countLabel: 'найнижчих оцінок',
       tone: 'rose'
     },
