@@ -11,7 +11,7 @@ import { BookCoverWithRating } from '@/components/books/book/BookCoverWithRating
 const BookPage = async ({ params }: { params: Promise<{ slug: string }> }) => {
   const { slug } = await params
 
-  const book = homeData.readBooks.books.find((book) => book.slug === slug)
+  const book = homeData.books.find((book) => book.slug === slug)
 
   if (!book) {
     return <div className='text-center mt-8'>Такої книги немає</div>

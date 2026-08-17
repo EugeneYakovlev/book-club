@@ -11,21 +11,23 @@ import { BooksTable } from '@/components/stats/BooksTable'
 const MemberPage = async ({ params }: { params: Promise<{ slug: string }> }) => {
   const { slug } = await params
 
+  const books = homeData.books.filter((book) => (book.ratings?.length ?? 0) > 0)
+
   const member = homeData.members.find((member) => member.slug === slug)
 
   if (!member) {
     return <>Такого учасника немає</>
   }
 
-  const memberRatings = getMemberRatings(member.id, homeData.readBooks.books);
+  const memberRatings = getMemberRatings(member.id, books);
 
   const averageRating = getMemberAverageRating(memberRatings);
   const highestRating = getMemberHighestRating(memberRatings);
   const lowestRating = getMemberLowestRating(memberRatings);
   const booksCount = getMemberBooksCount(memberRatings);
 
-  const loyalMembers = getMemberRatingCounts(homeData.readBooks.books, 'highest')
-  const criticMembers = getMemberRatingCounts(homeData.readBooks.books, 'lowest')
+  const loyalMembers = getMemberRatingCounts(books, 'highest')
+  const criticMembers = getMemberRatingCounts(books, 'lowest')
   const loyalLeader = getLeadersFromMembers(loyalMembers).find((leader) => leader.memberId === member.id)
   const criticLeader = getLeadersFromMembers(criticMembers).find((leader) => leader.memberId === member.id)
 
@@ -80,7 +82,7 @@ const MemberPage = async ({ params }: { params: Promise<{ slug: string }> }) => 
         </div>
       </Section>
       <Section title='Усі оцінки'>
-        <BooksTable members={[member]} books={homeData.readBooks.books} hideControls />
+        <BooksTable members={[member]} books={books} hideControls />
       </Section>
     </>
   )

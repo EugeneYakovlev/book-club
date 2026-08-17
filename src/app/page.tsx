@@ -6,14 +6,18 @@ import { ReadBooks } from "@/components/books/ReadBooks"
 import { ClubMembers } from "@/components/members/ClubMembers";
 
 const App = () => {
-  
+  const nextBook = homeData.books.find((book) => book.currentlyReading)
+  const readBooks = homeData.books.filter((book) => (book.ratings?.length ?? 0) > 0)
+
   return ( 
     <>
-      <Section eyebrow="Наступна книга" title="Читаємо в Серпні">
-        <NextBook book={homeData.readBooks.books[0]} />
-      </Section>
+      {nextBook && 
+        <Section eyebrow="Наступна книга" title="Читаємо в Серпні">
+          <NextBook book={nextBook} />
+        </Section>
+      }
       <Section eyebrow="Архів" title="Прочитані книги">
-        <ReadBooks {...homeData.readBooks } />
+        <ReadBooks books={readBooks} />
       </Section>
       <Section eyebrow="учасники" title="Чотири вальта" id="members">
         <ClubMembers members={homeData.members} />
