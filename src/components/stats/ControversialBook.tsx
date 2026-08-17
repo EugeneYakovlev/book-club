@@ -1,3 +1,6 @@
+'use client'
+import { useState } from 'react'
+
 import Image from 'next/image'
 import Link from 'next/link'
 
@@ -15,10 +18,15 @@ const getRatingRange = (book: Book) => {
 }
 
 export const ControversialBook = ({ books }: Props) => {
+  const visibleIncrement = 7
+  const [visibleCount, setVisibleCount] = useState(visibleIncrement)
+
   const controversialBooks = [...books]
     .filter((book): book is Book & { controversy: number } => typeof book.controversy === 'number')
     .sort((a, b) => b.controversy - a.controversy)
-  const [featuredBook, ...otherBooks] = controversialBooks
+
+  const visibleBooks = controversialBooks.slice(0, visibleCount)  
+  const [featuredBook, ...otherBooks] = visibleBooks
 
   if (!featuredBook) return null
 
@@ -34,8 +42,8 @@ export const ControversialBook = ({ books }: Props) => {
       <div className='w-full h-1.5 rounded-full bg-linear-to-r to-red-700 via-60 via-red-400 via-40% via-yellow-400 via-24% via-emerald-300 via-16% via-emerald-500 via-8% from-emerald-600'></div>
 
       <div className='mt-6 grid gap-6'>
-        <Link href={`/books/${featuredBook.slug}`} className='group relative flex min-h-70 overflow-hidden rounded-[1.6rem] p-5 text-white shadow-[0_18px_35px_-24px_rgba(15,23,42,0.9)] sm:p-6'>
-          <Image src={featuredBook.cover} alt='' fill sizes='(min-width: 1024px) 50vw, 100vw' className='object-cover opacity-45 transition duration-500 group-hover:scale-105 group-hover:opacity-55' />
+        <Link href={`/books/${featuredBook.slug}`} className='group relative z-0 flex min-h-70 overflow-hidden rounded-[1.6rem] p-5 text-white shadow-[0_18px_35px_-24px_rgba(15,23,42,0.9)] sm:p-6'>
+          <Image src={featuredBook.cover} alt={featuredBook.title} fill className='object-cover object-center opacity-45 transition duration-500 group-hover:scale-105 group-hover:opacity-55' />
           <div className='absolute inset-0 bg-linear-to-r from-slate-950 via-slate-950/75 to-slate-950/20' />
           <div className='relative flex flex-1 items-end justify-between'>
             <div>
@@ -51,13 +59,13 @@ export const ControversialBook = ({ books }: Props) => {
           </div>
         </Link>
 
-        <div className='divide-y divide-slate-200/70 overflow-hidden rounded-[1.6rem] border border-white/70 bg-white/70 dark:divide-white/10 dark:border-white/10 dark:bg-white/5 grid md:grid-cols-2 lg:grid-cols-1 xl:grid-cols-2 gap-x-4'>
+        <div className='relative z-10 border border-white/70 dark:divide-white/10 dark:border-white/10 dark:bg-white/5 grid md:grid-cols-2 lg:grid-cols-1 xl:grid-cols-2 gap-3'>
           {otherBooks.map((book, index) => (
-            <Link key={book.id} href={`/books/${book.slug}`} className='group flex items-center gap-3 px-2 transition hover:bg-white/80 dark:hover:bg-white/5 sm:gap-4 py-4'>
+            <Link key={book.id} href={`/books/${book.slug}`} className='group flex items-center gap-3 px-3 rounded-3xl ring-1 ring-slate-900/5 shadow-[0_18px_35px_-24px_rgba(15,23,42,0.2)] transition hover:bg-white/80 dark:hover:bg-white/5 sm:gap-4 py-3'>
               <span className='w-2 text-center text-xs font-black tabular-nums text-slate-400 dark:text-slate-500'>{index + 2}</span>
               <Image src={book.cover} alt={book.title} width={64} height={96} className='h-15 w-10 shrink-0 rounded-lg object-cover shadow-sm ring-1 ring-slate-900/8 dark:ring-white/10' />
               <div className='min-w-0 flex-1'>
-                <p className='text-sm leading-none font-bold text-slate-800 transition-colors group-hover:text-rose-700 dark:text-slate-100 dark:group-hover:text-rose-300'>{book.title}</p>
+                <p className='text-sm line-clamp-3 leading-none font-bold text-slate-800 transition-colors group-hover:text-rose-700 dark:text-slate-100 dark:group-hover:text-rose-300'>{book.title}</p>
                 <p className='mt-1 truncate text-[10px] font-semibold uppercase text-slate-400 dark:text-slate-500'>{book.author}</p>
               </div>
               <div className='text-right'>
@@ -67,6 +75,16 @@ export const ControversialBook = ({ books }: Props) => {
             </Link>
           ))}
         </div>
+        {visibleCount < controversialBooks.length && 
+          <div className='flex justify-center'>
+            <button
+              type='button'
+              onClick={() => setVisibleCount((prev) => prev + 4)}
+              className='cursor-pointer flex justify-center w-auto items-center gap-1 rounded-lg border px-2.5 py-1.5 text-xs font-bold transition duration-200 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-violet-50 border-slate-200 bg-white text-slate-500 hover:border-violet-200 hover:text-violet-700 dark:border-white/10 dark:bg-white/5 dark:text-slate-400 dark:hover:border-violet-400/30 dark:hover:text-violet-200'>
+              Показати ще
+            </button>
+          </div>
+        }
       </div>
     </div>
   )

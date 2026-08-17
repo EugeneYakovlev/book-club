@@ -29,6 +29,10 @@ section + section {
   @apply mt-24;
 }
 
+#critics section + section {
+  @apply mt-16;
+}
+
 @utility scrollbar-none {
   scrollbar-width: none;
   -ms-overflow-style: none;

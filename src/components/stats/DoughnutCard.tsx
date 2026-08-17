@@ -101,6 +101,7 @@ export const DoughnutCard = ({
         <Doughnut
           options={chartOptions}
           data={buildChartData(data)}
+          className='w-full!'
         />
       </div>
     </div>

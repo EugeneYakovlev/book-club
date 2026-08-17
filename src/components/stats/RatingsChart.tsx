@@ -20,8 +20,8 @@ export const RatingsChart = ({ books }: Props) => {
   )
 
   return (
-    <div className='mt-6 space-y-6'>
-      <div className='grid gap-6 md:grid-cols-2'>
+    <div className='mt-8 space-y-6'>
+      <div className='grid gap-3 md:grid-cols-2'>
         <DoughnutCard 
           title='Розподіл усіх оцінок'
           totalLabel='Всього оцінок'
