@@ -10,7 +10,9 @@ import { RatingsChart } from '@/components/stats/RatingsChart'
 import { getAverageBookRating, getControversyBookRating } from '@/utils/books'
 
 const StatsPage = () => {
-  const books = homeData.readBooks.books.toReversed().map((book) => ({
+  const onlyRatedBooks = homeData.readBooks.books.filter((book) => (book.ratings?.length ?? 0) > 0)
+  
+  const books = onlyRatedBooks.toReversed().map((book) => ({
     ...book,
     average: getAverageBookRating(book.ratings ?? []),
     controversy: getControversyBookRating(book.ratings ?? [])

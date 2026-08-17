@@ -14,8 +14,10 @@ export const ReadBooks = ({books}: Props) => {
     average: getAverageBookRating(book.ratings ?? []),
   }))
 
-  const highestAverage = Math.max(...booksWithAverage.map((book) => book.average))
-  const lowestAverage = Math.min(...booksWithAverage.map((book) => book.average))
+  const onlyRatedBooks = booksWithAverage.filter((book) => (book.ratings?.length ?? 0) > 0)
+
+  const highestAverage = Math.max(...onlyRatedBooks.map((book) => book.average))
+  const lowestAverage = Math.min(...onlyRatedBooks.map((book) => book.average))
 
   return (
     <div className="relative mx-auto mt-10 w-full overflow-hidden rounded-4xl border border-slate-200/80 bg-linear-to-br from-violet-50 via-white to-amber-50/70 py-7 shadow-[0_24px_60px_-42px_rgba(49,46,129,0.55)] dark:border-white/10 dark:from-violet-950/40 dark:via-neutral-950 dark:to-amber-950/20 sm:rounded-[2.5rem] sm:py-9">

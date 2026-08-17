@@ -10,7 +10,7 @@ const App = () => {
   return ( 
     <>
       <Section eyebrow="Наступна книга" title="Читаємо в Серпні">
-        <NextBook book={homeData.nextBook} />
+        <NextBook book={homeData.readBooks.books[0]} />
       </Section>
       <Section eyebrow="Архів" title="Прочитані книги">
         <ReadBooks {...homeData.readBooks } />

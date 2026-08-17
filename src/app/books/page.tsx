@@ -10,11 +10,13 @@ const BooksPage = () => {
       average: getAverageBookRating(book.ratings ?? []),
     }))
 
-  const highestAverage = Math.max(...booksWithAverage.map((book) => book.average))
-  const lowestAverage = Math.min(...booksWithAverage.map((book) => book.average))
+  const onlyRatedBooks = booksWithAverage.filter((book) => book.ratings?.length ?? 0)
 
-  const collectionAverage = booksWithAverage.length
-    ? booksWithAverage.reduce((total, book) => total + book.average, 0) / booksWithAverage.length
+  const highestAverage = Math.max(...onlyRatedBooks.map((book) => book.average))
+  const lowestAverage = Math.min(...onlyRatedBooks.map((book) => book.average))
+
+  const collectionAverage = onlyRatedBooks.length
+    ? onlyRatedBooks.reduce((total, book) => total + book.average, 0) / onlyRatedBooks.length
     : 0
 
   return (
