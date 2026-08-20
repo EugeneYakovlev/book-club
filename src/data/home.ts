@@ -9,7 +9,12 @@ export const homeData = {
       author: 'Чарльз Буковскі',
       cover: '/images/books/postoffice.webp',
       year: 1971,
-      discussionDate: '18 Aug 2026',
+      discussionDate: '20 Aug 2026',
+      ratings: [
+        { memberId: 1, value: 3.72, label: '' },
+        { memberId: 3, value: 4, label: '' },
+        { memberId: 4, value: 3, label: '' }
+      ],
       currentlyReading: true
     },
     {
@@ -159,7 +164,7 @@ export const homeData = {
         { memberId: 1, value: 4, label: '' },
         { memberId: 2, value: 3, label: '' },
         { memberId: 3, value: 3.75, label: '4-' },
-        { memberId: 4, value: 2.65, label: '2-3, ну 3' }
+        { memberId: 4, value: 2.7, label: '2-3, ну 3' }
       ]
     }
   ],
