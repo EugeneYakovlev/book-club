@@ -12,7 +12,7 @@ const App = () => {
   return ( 
     <>
       {nextBook && 
-        <Section eyebrow="Наступна книга" title="Читаємо в Серпні">
+        <Section eyebrow="Наступна книга" title="Читаємо в Вересні">
           <NextBook book={nextBook} />
         </Section>
       }

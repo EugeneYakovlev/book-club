@@ -1,13 +1,13 @@
 export const homeData = {
   books: [
     {
-      id: 11,
+      id: 12,
       title: 'Шахмати для дибілів',
       slug: 'shakhmaty-dlia-dybiliv',
       description: 'Cучасна українська проза з гострим інтелектуальним гумором, провокаційною мовою та метафізичним підтекстом. Книжка поєднує роман й філософський трилер, у якому шахи стають моделлю боротьби зі злом.',
       author: 'Михайло Бриних',
       cover: '/images/books/chess.webp',
-      year: 2009,
+      year: 2008,
       discussionDate: '3 Sep 2026',
       currentlyReading: true
     },
@@ -23,6 +23,7 @@ export const homeData = {
       discussionDate: '20 Aug 2026',
       ratings: [
         { memberId: 1, value: 3.72, label: '' },
+        { memberId: 2, value: 2.98, label: '' },
         { memberId: 3, value: 4, label: '' },
         { memberId: 4, value: 3, label: '' }
       ]

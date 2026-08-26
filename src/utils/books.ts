@@ -57,11 +57,11 @@ export function getRatingLevel(value: number) {
 }
 
 export function getControversyLevel(value: number) {
-  if(value < 0.2) return 1;
-  if(value < 0.4) return 2;
-  if(value < 0.6) return 3;
-  if(value < 1) return 4;
-  if(value < 1.5) return 5;
+  if(value < 0.14) return 1;
+  if(value < 0.3) return 2;
+  if(value < 0.45) return 3;
+  if(value < 0.6) return 4;
+  if(value < 0.9) return 5;
 
   return 6;
 }
