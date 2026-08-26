@@ -2,6 +2,31 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { useEffect, useSyncExternalStore } from "react"
+
+const themeStorageKey = 'theme'
+
+function getIsDarkTheme() {
+  const savedTheme = window.localStorage.getItem(themeStorageKey)
+
+  return savedTheme
+    ? savedTheme === 'dark'
+    : window.matchMedia('(prefers-color-scheme: dark)').matches
+}
+
+function subscribeToTheme(callback: () => void) {
+  const colorScheme = window.matchMedia('(prefers-color-scheme: dark)')
+
+  window.addEventListener('storage', callback)
+  window.addEventListener('themechange', callback)
+  colorScheme.addEventListener('change', callback)
+
+  return () => {
+    window.removeEventListener('storage', callback)
+    window.removeEventListener('themechange', callback)
+    colorScheme.removeEventListener('change', callback)
+  }
+}
 
 const NavBar = () => {
   const navList = [
@@ -12,6 +37,19 @@ const NavBar = () => {
   ]
 
   const pathname = usePathname()
+  const isDarkTheme = useSyncExternalStore(subscribeToTheme, getIsDarkTheme, () => false)
+
+  useEffect(() => {
+    document.documentElement.classList.toggle('dark', isDarkTheme)
+  }, [isDarkTheme])
+
+  function toggleTheme() {
+    const nextThemeIsDark = !isDarkTheme
+
+    document.documentElement.classList.toggle('dark', nextThemeIsDark)
+    window.localStorage.setItem(themeStorageKey, nextThemeIsDark ? 'dark' : 'light')
+    window.dispatchEvent(new Event('themechange'))
+  }
 
   return (
     <header className="fixed mx-auto max-w-5xl inset-x-0 top-0 z-50 px-3 pt-3 sm:px-5 xl:px-0">
@@ -40,6 +78,26 @@ const NavBar = () => {
               </li>
             )
           }) }
+          <li>
+            <button
+              type='button'
+              onClick={toggleTheme}
+              aria-label={isDarkTheme ? 'Увімкнути світлу тему' : 'Увімкнути темну тему'}
+              title={isDarkTheme ? 'Світла тема' : 'Темна тема'}
+              className='flex h-8 w-8 cursor-pointer items-center justify-center rounded-lg text-slate-500 transition duration-200 hover:bg-white/70 hover:text-violet-700 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-violet-500 dark:text-slate-400 dark:hover:bg-white/5 dark:hover:text-violet-200'
+            >
+              {isDarkTheme ? (
+                <svg viewBox='0 0 24 24' fill='none' stroke='currentColor' strokeWidth='2' className='h-4 w-4' aria-hidden='true'>
+                  <circle cx='12' cy='12' r='4' />
+                  <path d='M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41' />
+                </svg>
+              ) : (
+                <svg viewBox='0 0 24 24' fill='none' stroke='currentColor' strokeWidth='2' className='h-4 w-4' aria-hidden='true'>
+                  <path d='M21 12.8A9 9 0 1 1 11.2 3 7 7 0 0 0 21 12.8Z' />
+                </svg>
+              )}
+            </button>
+          </li>
         </ul>
       </nav>
     </header>

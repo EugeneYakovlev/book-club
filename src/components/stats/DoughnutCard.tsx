@@ -22,7 +22,7 @@ interface Props {
 }
 
 const ratingLabels = ['1', '2', '3', '4', '5']
-const ratingColors = ['#b91c1c', '#f87171', '#fbbf24', '#10b981', '#059669']
+const ratingColors = ['#f87171', '#fb7185', '#fbbf24', '#4ade80', '#10b981']
 
 export const DoughnutCard = ({
   title,
@@ -92,16 +92,16 @@ export const DoughnutCard = ({
   })
 
   return (
-    <div className='rounded-xl border border-slate-200 p-4'>
-      <h3 className='mb-2 text-sm font-semibold text-slate-700'>{title}</h3>
-      <p className='mb-3 text-xs text-slate-500'>
+    <div className='rounded-xl border border-slate-200 dark:border-white/10 p-4 shadow-[0_30px_70px_-48px_rgba(136,19,55,0.45)]'>
+      <h3 className='mb-2 text-sm font-semibold text-slate-700 dark:text-slate-200'>{title}</h3>
+      <p className='mb-3 text-xs text-slate-500 dark:text-slate-400'>
         {totalLabel}: {totalValue}
       </p>
       <div className='h-64'>
         <Doughnut
           options={chartOptions}
           data={buildChartData(data)}
-          className='w-full!'
+          className='w-full! overflow-visible!'
         />
       </div>
     </div>

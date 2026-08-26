@@ -54,12 +54,12 @@ export const ControversialBook = ({ books }: Props) => {
               </div>
             </div>
             <div className='flex items-center justify-between gap-4'>
-              <span className={`rounded-full px-2.5 py-1 text-2xl  tabular-nums font-black uppercase tracking-[0.14em] text-rose-950 bg-white controversy-${getControversyLevel(featuredBook.controversy || 0)}`}>{featuredBook.controversy.toFixed(2)}</span>
+              <span className={`rounded-full px-2.5 py-1 text-2xl  tabular-nums font-black uppercase tracking-[0.14em] text-rose-950 bg-white dark:bg-black/90 controversy-${getControversyLevel(featuredBook.controversy || 0)}`}>{featuredBook.controversy.toFixed(2)}</span>
             </div>
           </div>
         </Link>
 
-        <div className='relative z-10 border border-white/70 dark:divide-white/10 dark:border-white/10 dark:bg-white/5 grid md:grid-cols-2 lg:grid-cols-1 xl:grid-cols-2 gap-3'>
+        <div className='relative rounded-[1.6rem] z-10 border border-white/70 dark:divide-white/10 dark:border-white/10 dark:bg-white/5 grid md:grid-cols-2 lg:grid-cols-1 xl:grid-cols-2 gap-3'>
           {otherBooks.map((book, index) => (
             <Link key={book.id} href={`/books/${book.slug}`} className='group flex items-center gap-3 px-3 rounded-3xl ring-1 ring-slate-900/5 shadow-[0_18px_35px_-24px_rgba(15,23,42,0.2)] transition hover:bg-white/80 dark:hover:bg-white/5 sm:gap-4 py-3'>
               <span className='w-2 text-center text-xs font-black tabular-nums text-slate-400 dark:text-slate-500'>{index + 2}</span>

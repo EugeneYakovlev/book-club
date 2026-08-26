@@ -28,7 +28,7 @@ export const BooksTableBody = ({ books, members, displayAverageRow }: Props) => 
           <tr key={member.id} className='group'>
             <th
               scope='row'
-              className='sticky left-0 z-10 border-b border-r border-slate-200 bg-slate-50 p-3 transition-colors group-hover:bg-violet-50 '>
+              className='sticky left-0 z-10 border-b border-r border-slate-200 dark:border-white/10 bg-slate-50 dark:bg-[#0e0e0e] p-3 transition-colors group-hover:bg-violet-50 dark:group-hover:bg-[#1f1930]'>
               <Link
                 href={`/members/${member.slug}`}
                 className='flex items-center gap-2.5 mx-auto w-full justify-center'>
@@ -47,13 +47,13 @@ export const BooksTableBody = ({ books, members, displayAverageRow }: Props) => 
               return (
                 <td
                   key={book.id}
-                  className={`h-20 border-b border-slate-200 p-3 text-center transition-colors group-hover:bg-violet-50/50  ${rating ? `rating-${getRatingLevel(rating.value)}` : ''}`}>
+                  className={`h-20 border-b border-slate-200 dark:border-white/10 p-3 text-center transition-colors group-hover:bg-violet-50/50 dark:group-hover:bg-violet-400/10 ${rating ? `rating-${getRatingLevel(rating.value)}` : ''}`}>
                   {rating ? (
                     <span className='inline-flex items-center font-bold text-base tabular-nums'>
                       {rating.label || rating.value}
                     </span>
                   ) : (
-                    <span className='text-sm text-slate-300'>—</span>
+                    <span className='text-sm'>—</span>
                   )}
                 </td>
               )
@@ -66,7 +66,7 @@ export const BooksTableBody = ({ books, members, displayAverageRow }: Props) => 
       <tr className={`${displayAverageRow ? '' : 'hidden'}`}>
         <th
           scope='col'
-          className='sticky left-0 top-0 border-t-2 z-30 border-b border-r border-slate-200 border-t-slate-300 bg-slate-50'>
+          className='sticky left-0 top-0 border-t-2 z-30 border-b border-r border-slate-200 border-t-slate-300 dark:border-white/10 dark:border-t-white/5 bg-slate-50 dark:bg-[#0e0e0e]'>
           <svg
             viewBox='0 0 20 20'
             fill='currentColor'
@@ -78,13 +78,13 @@ export const BooksTableBody = ({ books, members, displayAverageRow }: Props) => 
           return (
             <td
               key={book.id}
-              className={`h-20 border-b border-t-2 border-slate-200 border-t-slate-300 p-3 text-center transition-colors bg-violet-50/50  rating-${getRatingLevel(book.average || 0)}`}>
+              className={`h-20 border-b border-t-2 border-slate-200 border-t-slate-300 dark:border-white/10 dark:border-t-white/5 p-3 text-center transition-colors bg-violet-50/50 dark:bg-violet-400/10 rating-${getRatingLevel(book.average || 0)}`}>
               {book.average ? (
                 <span className='inline-flex items-center font-bold text-xl tabular-nums'>
                   {book.average.toFixed(2)}
                 </span>
               ) : (
-                <span className='text-sm text-slate-300'>—</span>
+                <span className='text-sm'>—</span>
               )}
             </td>
           )
