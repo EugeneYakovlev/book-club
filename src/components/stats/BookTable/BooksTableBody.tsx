@@ -10,9 +10,10 @@ import { getRatingLevel } from '@/utils/books'
 interface Props {
   books: Book[]
   members: Member[],
-  displayAverageRow: boolean
+  displayAverageRow: boolean,
+  hideControls: boolean
 }
-export const BooksTableBody = ({ books, members, displayAverageRow }: Props) => {
+export const BooksTableBody = ({ books, members, displayAverageRow, hideControls }: Props) => {
   return (
     <>
     <tbody>
@@ -26,21 +27,23 @@ export const BooksTableBody = ({ books, members, displayAverageRow }: Props) => 
 
         return (
           <tr key={member.id} className='group'>
-            <th
-              scope='row'
-              className='sticky left-0 z-10 border-b border-r border-slate-200 dark:border-white/10 bg-slate-50 dark:bg-[#0e0e0e] p-3 transition-colors group-hover:bg-violet-50 dark:group-hover:bg-[#1f1930]'>
-              <Link
-                href={`/members/${member.slug}`}
-                className='flex items-center gap-2.5 mx-auto w-full justify-center'>
-                <Image
-                  src={member.pic}
-                  alt={member.name}
-                  width={120}
-                  height={120}
-                  className='h-16 w-16 shrink-0 rounded-xl object-cover object-top ring-1 ring-slate-900/8 sm:h-20 sm:w-20'
-                />
-              </Link>
-            </th>
+            {!hideControls &&
+              <th
+                scope='row'
+                className='sticky left-0 z-10 border-b border-r border-slate-200 dark:border-white/10 bg-slate-50 dark:bg-[#0e0e0e] p-3 transition-colors group-hover:bg-violet-50 dark:group-hover:bg-[#1f1930]'>
+                <Link
+                  href={`/members/${member.slug}`}
+                  className='flex items-center gap-2.5 mx-auto w-full justify-center'>
+                  <Image
+                    src={member.pic}
+                    alt={member.name}
+                    width={120}
+                    height={120}
+                    className='h-16 w-16 shrink-0 rounded-xl object-cover object-top ring-1 ring-slate-900/8 sm:h-20 sm:w-20'
+                  />
+                </Link>
+              </th>
+            }
             {books.map((book) => {
               const rating = ratingsByBook.get(book.id)
 

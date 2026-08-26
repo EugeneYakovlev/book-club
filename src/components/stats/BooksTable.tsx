@@ -55,8 +55,8 @@ export const BooksTable = ({ books, members, hideControls }: Props) => {
       <div className='w-full overflow-x-auto scrollbar-none overscroll-x-none rounded-[1.75rem] border border-slate-200/80 dark:border-white/10 bg-white dark:bg-black shadow-[0_24px_60px_-42px_rgba(49,46,129,0.5)]'>
         <table
           className={`w-max min-w-full border-separate border-spacing-0 text-left ${isHeatMapActive ? 'draw-heatmap' : ''}`}>
-          <BooksTableHeader books={books} />
-          <BooksTableBody books={books} members={visibleMembers} displayAverageRow={isAverageRowDisplayed} />
+          <BooksTableHeader books={books} hideControls={!!hideControls} />
+          <BooksTableBody books={books} members={visibleMembers} displayAverageRow={isAverageRowDisplayed} hideControls={!!hideControls} />
         </table>
       </div>
     </div>
