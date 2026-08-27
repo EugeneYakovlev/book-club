@@ -12,7 +12,8 @@ interface CriticCategory {
   title: string
   description: string
   countLabel: string
-  tone: string
+  tone: string,
+  href: string
 }
 
 interface Props {
@@ -44,7 +45,7 @@ export const CriticCard = ({ content, members }: Props) => {
       {members.map((member) => (
         <Link
           key={member.id}
-          href={`/members/${member.slug}`}
+          href={content.href}
           className={`group flex items-center gap-3 rounded-2xl border p-3 transition duration-200 hover:-translate-y-0.5 hover:shadow-md ${content.tone === 'rose' ? toneStyles.rose.card  : toneStyles.emerald.card }`}>
           <Image
             src={member.pic}

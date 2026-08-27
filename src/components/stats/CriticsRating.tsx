@@ -19,14 +19,16 @@ export const CriticsRating = ({ books, members }: Props) => {
       title: 'Найлояльніший читач',
       description: 'Найчастіше ставив найвищу оцінку книзі',
       countLabel: 'найвищих оцінок',
-      tone: 'emerald'
+      tone: 'emerald',
+      href: '/stats/loyal'
     },
     {
       leaders: getLeadersFromMembers(criticMembers),
       title: 'Найсуворіший критик',
       description: 'Найчастіше ставив найнижчу оцінку книзі',
       countLabel: 'найнижчих оцінок',
-      tone: 'rose'
+      tone: 'rose',
+      href: '/stats/critic'
     },
   ]
 
