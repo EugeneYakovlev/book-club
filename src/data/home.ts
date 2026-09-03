@@ -9,7 +9,12 @@ export const homeData = {
       cover: '/images/books/chess.webp',
       year: 2008,
       discussionDate: '3 Sep 2026',
-      currentlyReading: true
+      currentlyReading: true,
+      ratings: [
+        { memberId: 1, value: 3.75, label: '' },
+        { memberId: 3, value: 3.25, label: '' },
+        { memberId: 4, value: 3, label: '' }
+      ]
     },
     {
       id: 11,
