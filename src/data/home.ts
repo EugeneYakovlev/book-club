@@ -1,6 +1,17 @@
 export const homeData = {
   books: [
     {
+      id: 13,
+      title: 'Листоноша завжди дзвонить двічі',
+      slug: 'lystonosha-zavzhdy-dzvonyt-dvichi',
+      description: 'Френк Чемберс - волоцюга, якого ніщо не втримує на одному місці. Нормальне життя - це надто велика відповідальність для нього. Проте одного дня в каліфорнійській забігайлівці Френку пропонують роботу. Брудну та нецікаву, але бодай якусь. Завдяки цьому в його житті як грім посеред ясного неба з’являється Кора. Вона настільки ж небезпечна, наскільки ідеальна.',
+      author: 'Джеймс Кейн',
+      cover: '/images/books/ringstwice.webp',
+      year: 1934,
+      discussionDate: '29 Sep 2026',
+      currentlyReading: true
+    },
+    {
       id: 12,
       title: 'Шахмати для дибілів',
       slug: 'shakhmaty-dlia-dybiliv',
@@ -9,7 +20,6 @@ export const homeData = {
       cover: '/images/books/chess.webp',
       year: 2008,
       discussionDate: '3 Sep 2026',
-      currentlyReading: true,
       ratings: [
         { memberId: 1, value: 3.75, label: '' },
         { memberId: 2, value: 3.35, label: '' },
