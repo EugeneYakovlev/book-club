@@ -12,6 +12,7 @@ export const homeData = {
       currentlyReading: true,
       ratings: [
         { memberId: 1, value: 3.75, label: '' },
+        { memberId: 2, value: 3.35, label: '' },
         { memberId: 3, value: 3.25, label: '' },
         { memberId: 4, value: 3, label: '' }
       ]
