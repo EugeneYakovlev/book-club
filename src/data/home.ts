@@ -23,7 +23,7 @@ export const homeData = {
       ratings: [
         { memberId: 1, value: 3.75, label: '' },
         { memberId: 2, value: 3.35, label: '' },
-        { memberId: 3, value: 3.25, label: '' },
+        { memberId: 3, value: 3.25, label: '3+' },
         { memberId: 4, value: 3, label: '' }
       ]
     },
