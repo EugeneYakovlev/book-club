@@ -2,7 +2,7 @@
 
 import { useState } from 'react'
 
-import type { Book } from '@/types/book'
+import type { BookWithStats } from '@/types/book'
 import type { Member } from '@/types/member'
 
 import { BooksTableHeader } from './BookTable/BooksTableHeader'
@@ -10,7 +10,7 @@ import { BooksTableBody } from './BookTable/BooksTableBody'
 import { BookTableControls } from './BookTable/BookTableControls'
 
 interface Props {
-  books: Book[]
+  books: BookWithStats[]
   members: Member[]
   hideControls?: boolean
 }

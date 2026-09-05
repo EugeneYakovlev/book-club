@@ -1,20 +1,22 @@
 import Image from "next/image";
 import Link from "next/link";
 
-import type { Book } from '@/types/book'
-import { homeData } from "@/data/home";
+import type { BookWithStats } from '@/types/book'
+import type { Member } from '@/types/member'
 import { getRatingsBreakdown } from "@/utils/books";
+import { StarIcon } from "@/components/ui/StarIcon";
 
 interface Props {
-  book: Book,
+  book: BookWithStats,
+  members: Member[],
   isLowestRated: boolean,
   isTopRated: boolean,
   grayscale?: boolean
 }
 
-export const BookCard = ({ book, isLowestRated, isTopRated, grayscale }: Props) => {
-  const breakdown = getRatingsBreakdown(book.ratings ?? [], homeData.members);
-  const hasRating = typeof book.average === 'number' && book.average > 0;
+export const BookCard = ({ book, members, isLowestRated, isTopRated, grayscale }: Props) => {
+  const breakdown = getRatingsBreakdown(book.ratings ?? [], members);
+  const hasRating = book.average > 0;
 
   return (
     <Link
@@ -60,13 +62,11 @@ export const BookCard = ({ book, isLowestRated, isTopRated, grayscale }: Props) 
             <span>{book.year}</span>
             {hasRating ? (
               <span className='flex items-center gap-1 text-slate-700 dark:text-slate-200' title={breakdown}>
-                <svg viewBox='0 0 20 20' fill='currentColor' className='h-4 w-4 text-amber-400'>
-                  <path d='M10 1.5l2.6 5.6 6.1.6-4.6 4.1 1.3 6-5.4-3.1-5.4 3.1 1.3-6-4.6-4.1 6.1-.6z' />
-                </svg>
-                <span className='font-bold text-[14px] tabular-nums'>{book.average?.toFixed(2)}</span>
+                <StarIcon className='h-4 w-4 text-amber-400' />
+                <span className='font-bold text-[14px] tabular-nums'>{book.average.toFixed(2)}</span>
               </span>
             ) : (
-              <span className='text-slate-400'>без оцінок</span>
+              <span className='text-slate-500 dark:text-slate-400'>без оцінок</span>
             )}
           </div>
         </div>

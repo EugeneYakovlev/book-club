@@ -2,18 +2,13 @@ import { Section } from '@/components/layouts/Section'
 import { CriticsChart } from '@/components/stats/CriticsChart'
 import { MemberLeaderSummary } from '@/components/stats/MemberLeaderSummary'
 
-import { homeData } from '@/data/home'
-import { getLeadersFromMembers, getMemberRatingCounts } from '@/utils/member'
+import { getBooksWithStats, getMembers } from '@/data/selectors'
+import { getMemberRatingCounts } from '@/utils/member'
 
 const CriticPage = () => {
-  const onlyRatedBooks = homeData.books.filter((book) => (book.ratings?.length ?? 0) > 0)
-
-  const books = onlyRatedBooks.toReversed().map((book) => ({
-    ...book
-  }))
-
-  const members = homeData.members
-  const results = [...getMemberRatingCounts(books, 'lowest')].sort((a, b) => b.count - a.count)
+  const books = getBooksWithStats()
+  const members = getMembers()
+  const results = getMemberRatingCounts(books, 'lowest')
 
   return (
     <>

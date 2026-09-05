@@ -1,10 +1,10 @@
 import Image from 'next/image'
 import Link from 'next/link'
 
-import type { Book } from '@/types/book'
+import type { BookWithStats } from '@/types/book'
 
 interface Props {
-  books: Book[],
+  books: BookWithStats[],
   hideControls: boolean
 }
 

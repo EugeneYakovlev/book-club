@@ -9,7 +9,11 @@ export interface Book {
   author: string,
   year: number,
   discussionDate: string,
-  ratings?: Rating[],
-  average?: number,
-  controversy?: number | null
+  currentlyReading?: boolean,
+  ratings?: Rating[]
+}
+
+export type BookWithStats = Book & {
+  average: number
+  controversy: number | null
 }

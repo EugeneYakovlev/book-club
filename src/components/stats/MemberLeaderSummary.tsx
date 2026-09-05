@@ -3,31 +3,13 @@ import Image from 'next/image'
 import Link from 'next/link'
 
 import { getMemberColor } from '@/utils/member'
+import { type Tone, toneStyles } from '@/styles/tones'
 
 type LeaderSummaryProps = {
   countLabel: string
-  tone: 'emerald' | 'rose'
+  tone: Tone
   members: Member[]
   results: { memberId: number; count: number }[]
-}
-
-const toneStyles = {
-  emerald: {
-    card: 'border-emerald-200/80 bg-emerald-50/80 dark:border-emerald-400/20 dark:bg-emerald-400/5',
-    tag: 'text-emerald-700 dark:text-emerald-300',
-    badge: 'bg-emerald-100 text-emerald-700 dark:bg-emerald-400/10 dark:text-emerald-300',
-    count: 'text-emerald-700 dark:text-emerald-300',
-    label: 'text-emerald-600/80 dark:text-emerald-300/80',
-    ring: 'ring-emerald-900/8 dark:ring-emerald-100/10'
-  },
-  rose: {
-    card: 'border-rose-200/80 bg-rose-50/80 dark:border-rose-400/20 dark:bg-rose-400/5',
-    tag: 'text-rose-700 dark:text-rose-300',
-    badge: 'bg-rose-100 text-rose-700 dark:bg-rose-400/10 dark:text-rose-300',
-    count: 'text-rose-700 dark:text-rose-300',
-    label: 'text-rose-600/80 dark:text-rose-300/80',
-    ring: 'ring-rose-900/8 dark:ring-rose-100/10'
-  }
 }
 
 export const MemberLeaderSummary = ({

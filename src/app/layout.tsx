@@ -1,16 +1,13 @@
 import type { Metadata } from "next";
-import { Geist_Mono, Roboto } from "next/font/google";
+import { Roboto } from "next/font/google";
 import "./globals.css";
 import NavBar from "@/components/layouts/NavBar";
+import { ThemeProvider } from "@/components/providers/ThemeProvider";
+import { themeInitScript } from "@/lib/theme";
 
-const robotoSans = Roboto({
+const roboto = Roboto({
   variable: "--font-roboto",
-  subsets: ["cyrillic"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
+  subsets: ["cyrillic", "latin"],
 });
 
 export const metadata: Metadata = {
@@ -25,14 +22,20 @@ export default function RootLayout({
 }>) {
   return (
     <html
-      lang="en"
-      className={`${robotoSans.variable} ${geistMono.variable} h-full antialiased`}
+      lang="uk"
+      suppressHydrationWarning
+      className={`${roboto.variable} h-full antialiased`}
     >
-      <body className="min-h-full flex flex-col font-serif">
-        <NavBar />
-        <div className="pt-20">
-          {children}
-        </div>
+      <head>
+        <script dangerouslySetInnerHTML={{ __html: themeInitScript }} />
+      </head>
+      <body className="min-h-full flex flex-col font-sans">
+        <ThemeProvider>
+          <NavBar />
+          <div className="pt-20">
+            {children}
+          </div>
+        </ThemeProvider>
       </body>
     </html>
   );

@@ -1,5 +1,3 @@
-import { homeData } from '@/data/home'
-
 import { Section } from '@/components/layouts/Section'
 
 import { BooksTable } from '@/components/stats/BooksTable'
@@ -7,25 +5,18 @@ import { ControversialBook } from '@/components/stats/ControversialBook'
 import { CriticsRating } from '@/components/stats/CriticsRating'
 import { RatingsChart } from '@/components/stats/RatingsChart'
 
-import { getAverageBookRating, getControversyBookRating } from '@/utils/books'
+import { getBooksWithStats, getMembers } from '@/data/selectors'
 
 const StatsPage = () => {
-  const onlyRatedBooks = homeData.books.filter((book) => (book.ratings?.length ?? 0) > 0)
-  
-  const books = onlyRatedBooks.toReversed().map((book) => ({
-    ...book,
-    average: getAverageBookRating(book.ratings ?? []),
-    controversy: getControversyBookRating(book.ratings ?? [])
-  }))
-
-  const members = homeData.members
+  const books = getBooksWithStats()
+  const members = getMembers()
 
   return (
     <>
       <Section eyebrow='Статистика'>
         <BooksTable books={books} members={members} />
       </Section>
-      <div className='lg:grid lg:grid-cols-2 mt-8'>
+      <div className='mt-8 lg:grid lg:grid-cols-2 lg:gap-8'>
         <Section eyebrow='Яблуко розбрату'>
           <ControversialBook books={books} />
         </Section>

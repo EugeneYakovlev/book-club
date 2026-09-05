@@ -3,6 +3,7 @@ import Link from 'next/link'
 
 import type { Rating } from '@/types/rating'
 import type { Member } from '@/types/member'
+import { StarIcon } from '@/components/ui/StarIcon'
 
 interface Props {
   rating: Rating,
@@ -31,9 +32,7 @@ export const MemberRating = ({ rating, currentMember }: Props) => {
           </p>
         </div>
         <span className='flex shrink-0 items-center gap-1 rounded-lg bg-amber-50 px-2 py-1 text-sm font-extrabold text-amber-700 dark:bg-amber-400/10 dark:text-amber-300'>
-          <svg viewBox='0 0 20 20' fill='currentColor' className='h-3.5 w-3.5'>
-            <path d='M10 1.5l2.6 5.6 6.1.6-4.6 4.1 1.3 6-5.4-3.1-5.4 3.1 1.3-6-4.6-4.1 6.1-.6z' />
-          </svg>
+          <StarIcon className='h-3.5 w-3.5' />
           {rating.label || rating.value}
         </span>
       </Link>

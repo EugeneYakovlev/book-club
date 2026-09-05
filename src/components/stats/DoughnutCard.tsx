@@ -11,6 +11,8 @@ import {
 } from 'chart.js'
 import { Doughnut } from 'react-chartjs-2'
 
+import { useTheme } from '@/components/providers/ThemeProvider'
+
 ChartJS.register(ArcElement, Tooltip, Legend)
 
 interface Props {
@@ -31,6 +33,8 @@ export const DoughnutCard = ({
   data,
   chartKind
 }: Props) => {
+  const { isDark } = useTheme()
+
   const chartOptions: ChartOptions<'doughnut'> = {
     responsive: true,
     maintainAspectRatio: false,
@@ -43,12 +47,12 @@ export const DoughnutCard = ({
         position: 'bottom',
         labels: {
           usePointStyle: true,
-          color: document.documentElement.classList.contains('dark') ? '#cbd5e1' : '#475569',
+          color: isDark ? '#cbd5e1' : '#475569',
           padding: 14,
           boxWidth: 8,
           boxHeight: 8,
           font: {
-            family: 'ui-monospace, SFMono-Regular, Menlo, monospace',
+            family: 'system-ui, sans-serif',
             size: 11
           },
           filter: (legendItem: LegendItem, data: ChartData<'doughnut'>) => {
@@ -61,7 +65,7 @@ export const DoughnutCard = ({
         }
       },
       tooltip: {
-        backgroundColor: '#0f172a',
+        backgroundColor: isDark ? '#1e293b' : '#0f172a',
         cornerRadius: 10,
         padding: 12,
         displayColors: false,

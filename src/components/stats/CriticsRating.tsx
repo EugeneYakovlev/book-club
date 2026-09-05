@@ -2,7 +2,7 @@ import type { Book } from '@/types/book'
 import type { Member } from '@/types/member'
 
 import { getMemberRatingCounts, getLeadersFromMembers } from '@/utils/member'
-import { CriticCard } from './CriticCard'
+import { CriticCard, type CriticCategory } from './CriticCard'
 
 interface Props {
   books: Book[],
@@ -13,7 +13,7 @@ export const CriticsRating = ({ books, members }: Props) => {
   const loyalMembers = getMemberRatingCounts(books, 'highest')
   const criticMembers = getMemberRatingCounts(books, 'lowest')
 
-  const categories = [
+  const categories: CriticCategory[] = [
     {
       leaders:  getLeadersFromMembers(loyalMembers),
       title: 'Найлояльніший читач',

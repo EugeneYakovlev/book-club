@@ -1,13 +1,11 @@
+import { formatDiscussionDate } from '@/utils/date'
+
 interface Props {
   date: string
   label: string
 }
 export const DiscussionDateRow = ({ date, label }: Props) => {
-  const discussionDate = new Intl.DateTimeFormat('uk-UA', {
-    day: 'numeric',
-    month: 'long',
-    year: 'numeric'
-  }).format(new Date(date))
+  const discussionDate = formatDiscussionDate(date)
   return (
     <div className='rounded-3xl text-left border border-white/70 bg-white/70 p-5 shadow-sm backdrop-blur-sm dark:border-white/10 dark:bg-white/5 sm:p-6'>
       <p className='text-[11px] font-bold uppercase tracking-[0.18em] text-slate-400 dark:text-slate-500'>

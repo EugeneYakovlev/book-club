@@ -4,14 +4,16 @@ import { useState } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
 
-import type { Book } from '@/types/book'
+import type { BookWithStats } from '@/types/book'
 import { getControversyLevel } from '@/utils/books'
+import { Panel } from '@/components/ui/Panel'
+import { PillButton } from '@/components/ui/PillButton'
 
 interface Props {
-  books: Book[]
+  books: BookWithStats[]
 }
 
-const getRatingRange = (book: Book) => {
+const getRatingRange = (book: BookWithStats) => {
   const values = (book.ratings ?? []).map((rating) => rating.value)
 
   return values.length ? `${Math.min(...values).toFixed(2)} — ${Math.max(...values).toFixed(2)}` : '—'
@@ -21,8 +23,8 @@ export const ControversialBook = ({ books }: Props) => {
   const visibleIncrement = 7
   const [visibleCount, setVisibleCount] = useState(visibleIncrement)
 
-  const controversialBooks = [...books]
-    .filter((book): book is Book & { controversy: number } => typeof book.controversy === 'number')
+  const controversialBooks = books
+    .filter((book): book is BookWithStats & { controversy: number } => book.controversy !== null)
     .sort((a, b) => b.controversy - a.controversy)
 
   const visibleBooks = controversialBooks.slice(0, visibleCount)  
@@ -31,7 +33,7 @@ export const ControversialBook = ({ books }: Props) => {
   if (!featuredBook) return null
 
   return (
-    <div id="controversy-table" className='mt-8 overflow-hidden rounded-4xl border border-slate-200/80 bg-linear-to-br from-rose-50 via-white to-amber-50 p-5 shadow-[0_30px_70px_-48px_rgba(136,19,55,0.45)] dark:border-white/10 dark:from-rose-950/25 dark:via-neutral-950 dark:to-amber-950/15 sm:p-8'>
+    <Panel id='controversy-table' tone='rose' className='mt-8'>
       <div className='flex items-end justify-between gap-4 border-b border-slate-200/70 pb-5 dark:border-white/10'>
         <div>
           <p className='text-xs font-bold uppercase tracking-[0.18em] text-rose-600 dark:text-rose-300'>Рейтинг найсуперечливіших книг</p>
@@ -54,7 +56,7 @@ export const ControversialBook = ({ books }: Props) => {
               </div>
             </div>
             <div className='flex items-center justify-between gap-4'>
-              <span className={`rounded-full px-2.5 py-1 text-2xl  tabular-nums font-black uppercase tracking-[0.14em] text-rose-950 bg-white dark:bg-black/90 controversy-${getControversyLevel(featuredBook.controversy || 0)}`}>{featuredBook.controversy.toFixed(2)}</span>
+              <span className={`rounded-full px-2.5 py-1 text-2xl  tabular-nums font-black uppercase tracking-[0.14em] text-rose-950 bg-white dark:bg-black/90 controversy-${getControversyLevel(featuredBook.controversy)}`}>{featuredBook.controversy.toFixed(2)}</span>
             </div>
           </div>
         </Link>
@@ -69,23 +71,20 @@ export const ControversialBook = ({ books }: Props) => {
                 <p className='mt-1 truncate text-[10px] font-semibold uppercase text-slate-400 dark:text-slate-500'>{book.author}</p>
               </div>
               <div className='text-right'>
-                <p className={`text-lg font-black tabular-nums controversy-${getControversyLevel(book.controversy || 0)}`}>{book.controversy.toFixed(2)}</p>
+                <p className={`text-lg font-black tabular-nums controversy-${getControversyLevel(book.controversy)}`}>{book.controversy.toFixed(2)}</p>
                 <p className='text-[10px] font-semibold text-slate-400 dark:text-slate-500'>{getRatingRange(book)}</p>
               </div>
             </Link>
           ))}
         </div>
-        {visibleCount < controversialBooks.length && 
+        {visibleCount < controversialBooks.length &&
           <div className='flex justify-center'>
-            <button
-              type='button'
-              onClick={() => setVisibleCount((prev) => prev + 4)}
-              className='cursor-pointer flex justify-center w-auto items-center gap-1 rounded-lg border px-2.5 py-1.5 text-xs font-bold transition duration-200 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-violet-50 border-slate-200 bg-white text-slate-500 hover:border-violet-200 hover:text-violet-700 dark:border-white/10 dark:bg-white/5 dark:text-slate-400 dark:hover:border-violet-400/30 dark:hover:text-violet-200'>
+            <PillButton onClick={() => setVisibleCount((prev) => prev + visibleIncrement)}>
               Показати ще
-            </button>
+            </PillButton>
           </div>
         }
       </div>
-    </div>
+    </Panel>
   )
 }

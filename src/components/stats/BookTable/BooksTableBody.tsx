@@ -1,14 +1,15 @@
 import type { Member } from '@/types/member'
-import type { Book } from '@/types/book'
+import type { BookWithStats } from '@/types/book'
 
 import Image from 'next/image'
 import Link from 'next/link'
 
 import { getMemberRatings } from '@/utils/member'
 import { getRatingLevel } from '@/utils/books'
+import { StarIcon } from '@/components/ui/StarIcon'
 
 interface Props {
-  books: Book[]
+  books: BookWithStats[]
   members: Member[],
   displayAverageRow: boolean,
   hideControls: boolean
@@ -70,18 +71,13 @@ export const BooksTableBody = ({ books, members, displayAverageRow, hideControls
         <th
           scope='col'
           className='sticky left-0 top-0 border-t-2 z-30 border-b border-r border-slate-200 border-t-slate-300 dark:border-white/10 dark:border-t-white/5 bg-slate-50 dark:bg-[#0e0e0e]'>
-          <svg
-            viewBox='0 0 20 20'
-            fill='currentColor'
-            className='mx-auto h-8 w-8 text-amber-400'>
-            <path d='M10 1.5l2.6 5.6 6.1.6-4.6 4.1 1.3 6-5.4-3.1-5.4 3.1 1.3-6-4.6-4.1 6.1-.6z' />
-          </svg>
+          <StarIcon className='mx-auto h-8 w-8 text-amber-400' />
         </th>
         {books.map((book) => {
           return (
             <td
               key={book.id}
-              className={`h-20 border-b border-t-2 border-slate-200 border-t-slate-300 dark:border-white/10 dark:border-t-white/5 p-3 text-center transition-colors bg-violet-50/50 dark:bg-violet-400/10 rating-${getRatingLevel(book.average || 0)}`}>
+              className={`h-20 border-b border-t-2 border-slate-200 border-t-slate-300 dark:border-white/10 dark:border-t-white/5 p-3 text-center transition-colors bg-violet-50/50 dark:bg-violet-400/10 rating-${getRatingLevel(book.average)}`}>
               {book.average ? (
                 <span className='inline-flex items-center font-bold text-xl tabular-nums'>
                   {book.average.toFixed(2)}

@@ -1,9 +1,11 @@
 import Image from 'next/image'
 import Link from 'next/link'
+import { notFound } from 'next/navigation'
 
 import { Section } from '@/components/layouts/Section'
-import { homeData } from '@/data/home'
-import { getMemberAverageRating, getMemberBooksCount, getMemberHighestRating, getMemberLowestRating, getMemberRatings, getMemberRatingCounts, getLeadersFromMembers } from '@/utils/member'
+import { Panel } from '@/components/ui/Panel'
+import { getBooksWithStats, getMemberBySlug } from '@/data/selectors'
+import { getMemberAverageRating, getMemberHighestRating, getMemberLowestRating, getMemberRatings, getMemberRatingCounts, getLeadersFromMembers } from '@/utils/member'
 import { AverageRatingRow } from '@/components/members/member/AverageRatingRow'
 import { RatingHighlight } from '@/components/members/member/RatingHighlight'
 import { BooksTable } from '@/components/stats/BooksTable'
@@ -11,12 +13,12 @@ import { BooksTable } from '@/components/stats/BooksTable'
 const MemberPage = async ({ params }: { params: Promise<{ slug: string }> }) => {
   const { slug } = await params
 
-  const books = homeData.books.filter((book) => (book.ratings?.length ?? 0) > 0)
+  const books = getBooksWithStats()
 
-  const member = homeData.members.find((member) => member.slug === slug)
+  const member = getMemberBySlug(slug)
 
   if (!member) {
-    return <>Такого учасника немає</>
+    notFound()
   }
 
   const memberRatings = getMemberRatings(member.id, books);
@@ -24,7 +26,13 @@ const MemberPage = async ({ params }: { params: Promise<{ slug: string }> }) => 
   const averageRating = getMemberAverageRating(memberRatings);
   const highestRating = getMemberHighestRating(memberRatings);
   const lowestRating = getMemberLowestRating(memberRatings);
-  const booksCount = getMemberBooksCount(memberRatings);
+
+  const booksCount = memberRatings.length;
+  const booksCountForm = new Intl.PluralRules('uk-UA').select(booksCount);
+  const booksCountLabel =
+    booksCountForm === 'one' ? 'прочитана книга'
+    : booksCountForm === 'few' ? 'прочитані книги'
+    : 'прочитаних книг';
 
   const loyalMembers = getMemberRatingCounts(books, 'highest')
   const criticMembers = getMemberRatingCounts(books, 'lowest')
@@ -34,7 +42,7 @@ const MemberPage = async ({ params }: { params: Promise<{ slug: string }> }) => 
   return (
     <>
       <Section eyebrow={member.role} title={member.name}>
-        <div className='relative mx-auto mt-10 max-w-5xl overflow-hidden rounded-4xl border border-slate-200/80 bg-linear-to-br from-violet-100 via-white to-amber-50 p-5 shadow-[0_30px_70px_-48px_rgba(49,46,129,0.6)] dark:border-white/10 dark:from-violet-950/35 dark:via-neutral-950 dark:to-amber-950/20 sm:p-8 lg:p-10'>
+        <Panel padding='roomy' className='mx-auto mt-10 max-w-5xl'>
           <div className='relative grid items-center gap-8 md:grid-cols-[220px_minmax(0,1fr)] lg:grid-cols-[255px_minmax(0,1fr)] lg:gap-12'>
             <div className='relative mx-auto w-full max-w-55 lg:max-w-64'>
               <div className='absolute -inset-4 rounded-4xl bg-violet-500/15 blur-2xl dark:bg-violet-400/10' />
@@ -42,7 +50,7 @@ const MemberPage = async ({ params }: { params: Promise<{ slug: string }> }) => 
                 <Image src={member.pic} alt={member.name} width={500} height={650} className='aspect-3/4 w-full object-cover object-top' />
               </div>
               <span className='absolute -bottom-3 left-1/2 -translate-x-1/2 whitespace-nowrap rounded-full border border-white/80 bg-white/90 px-4 py-2 text-xs font-bold text-slate-600 shadow-lg backdrop-blur dark:border-white/10 dark:bg-slate-950/80 dark:text-slate-300'>
-                {booksCount} {booksCount === 1 ? 'прочитана книга' : 'прочитаних книг'}
+                {booksCount} {booksCountLabel}
               </span>
             </div>
             <div className='pt-5 md:pt-0'>
@@ -79,7 +87,7 @@ const MemberPage = async ({ params }: { params: Promise<{ slug: string }> }) => 
               </div>
             </div>
           </div>
-        </div>
+        </Panel>
       </Section>
       <Section title='Усі оцінки'>
         <BooksTable members={[member]} books={books} hideControls />

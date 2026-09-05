@@ -3,6 +3,7 @@
 import { useEffect, useRef, useState } from 'react'
 
 import type { Member } from '@/types/member'
+import { PillButton } from '@/components/ui/PillButton'
 
 interface Props {
   members: Member[]
@@ -38,22 +39,17 @@ export const MemberMultiSelect = ({ members, selectedMembers, onToggleMember, on
 
   return (
     <div ref={containerRef} className='relative'>
-      <button
-        type='button'
+      <PillButton
+        isActive={isOpen || hasCustomSelection}
         onClick={() => setIsOpen((prev) => !prev)}
         aria-expanded={isOpen}
         aria-haspopup='listbox'
-        className={`flex items-center gap-1.5 rounded-lg border px-2.5 py-1.5 text-xs font-bold transition duration-200 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-violet-500 ${
-          isOpen || hasCustomSelection
-            ? 'border-violet-600 bg-violet-600 text-white shadow-sm'
-            : 'border-slate-200 bg-white text-slate-500 hover:border-violet-200 hover:text-violet-700 dark:border-white/10 dark:bg-white/5 dark:text-slate-400 dark:hover:border-violet-400/30 dark:hover:text-violet-200'
-        }`}
       >
         {hasCustomSelection ? `Учасники: ${selectedMembers.length}` : 'Усі учасники'}
         <svg className='w-4 h-4 relative -top-px' viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
           <path d="M5.70711 9.71069C5.31658 10.1012 5.31658 10.7344 5.70711 11.1249L10.5993 16.0123C11.3805 16.7927 12.6463 16.7924 13.4271 16.0117L18.3174 11.1213C18.708 10.7308 18.708 10.0976 18.3174 9.70708C17.9269 9.31655 17.2937 9.31655 16.9032 9.70708L12.7176 13.8927C12.3271 14.2833 11.6939 14.2832 11.3034 13.8927L7.12132 9.71069C6.7308 9.32016 6.09763 9.32016 5.70711 9.71069Z" fill="currentColor"/>
         </svg>
-      </button>
+      </PillButton>
 
       {isOpen && (
         <div className='absolute left-0 top-full z-50 mt-2 w-52 overflow-hidden rounded-xl border border-slate-200 bg-white p-1.5 shadow-[0_20px_40px_-20px_rgba(15,23,42,0.35)] dark:border-white/10 dark:bg-neutral-900'>

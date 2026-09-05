@@ -1,3 +1,6 @@
+import type { Book } from '@/types/book'
+import type { Member } from '@/types/member'
+
 export const homeData = {
   books: [
     {
@@ -226,4 +229,4 @@ export const homeData = {
       pic: '/images/members/p4.webp'
     }
   ]
-}
+} satisfies { books: Book[]; members: Member[] }

@@ -1,6 +1,10 @@
 import Link from 'next/link'
+import { notFound } from 'next/navigation'
+
 import { Section } from '@/components/layouts/Section'
-import { homeData } from '@/data/home'
+import { Panel } from '@/components/ui/Panel'
+import { StarIcon } from '@/components/ui/StarIcon'
+import { getBookBySlug, getMembers } from '@/data/selectors'
 
 import { getAverageBookRating, getControversyBookRating, getControversyLevel } from '@/utils/books'
 import { DiscussionDateRow } from '@/components/books/book/DiscussionDateRow'
@@ -11,13 +15,13 @@ import { BookCoverWithRating } from '@/components/books/book/BookCoverWithRating
 const BookPage = async ({ params }: { params: Promise<{ slug: string }> }) => {
   const { slug } = await params
 
-  const book = homeData.books.find((book) => book.slug === slug)
+  const book = getBookBySlug(slug)
 
   if (!book) {
-    return <div className='text-center mt-8'>Такої книги немає</div>
+    notFound()
   }
 
-  const membersMap = new Map(homeData.members.map((member) => [member.id, member]))
+  const membersMap = new Map(getMembers().map((member) => [member.id, member]))
   const ratings = book.ratings ?? []
   const averageRating = getAverageBookRating(ratings)
 
@@ -29,7 +33,7 @@ const BookPage = async ({ params }: { params: Promise<{ slug: string }> }) => {
         <p className='mt-2 text-center text-sm font-semibold uppercase tracking-[0.16em] text-violet-600 dark:text-violet-300'>
           {book.author} · {book.year}
         </p>
-        <div className='relative mx-auto mt-10 max-w-5xl overflow-hidden rounded-4xl border border-slate-200/80 bg-linear-to-br from-violet-100 via-white to-amber-50 p-5 shadow-[0_30px_70px_-48px_rgba(49,46,129,0.6)] dark:border-white/10 dark:from-violet-950/35 dark:via-neutral-950 dark:to-amber-950/20 sm:p-8 lg:p-10'>
+        <Panel padding='roomy' className='mx-auto mt-10 max-w-5xl'>
           <div className='relative grid grid-cols-1 items-center gap-9 lg:grid-cols-[minmax(230px,0.72fr)_minmax(0,1fr)] lg:gap-12'>
             <BookCoverWithRating title={book.title} cover={book.cover} averageRating={averageRating} />
             <div>
@@ -39,9 +43,7 @@ const BookPage = async ({ params }: { params: Promise<{ slug: string }> }) => {
                   <p className='text-xs font-bold uppercase tracking-[0.18em] text-slate-400 dark:text-slate-500'>Оцінки клубу</p>
                 </div>
                 <div className='flex items-center gap-2 text-slate-700 dark:text-slate-200'>
-                  <svg viewBox='0 0 20 20' fill='currentColor' className='h-5 w-5 text-amber-400'>
-                    <path d='M10 1.5l2.6 5.6 6.1.6-4.6 4.1 1.3 6-5.4-3.1-5.4 3.1 1.3-6-4.6-4.1 6.1-.6z' />
-                  </svg>
+                  <StarIcon className='h-5 w-5 text-amber-400' />
                   <span className='text-3xl font-black tracking-tight'>{averageRating.toFixed(2)}</span>
                 </div>
               </div>
@@ -63,7 +65,7 @@ const BookPage = async ({ params }: { params: Promise<{ slug: string }> }) => {
               </Link>
             </div>
           </div>
-        </div>
+        </Panel>
       </Section>
     </>
   )

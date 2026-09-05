@@ -1,5 +1,7 @@
 import Image from 'next/image'
 
+import { StarIcon } from '@/components/ui/StarIcon'
+
 interface Props {
   title: string
   cover: string
@@ -21,12 +23,7 @@ export const BookCoverWithRating = ({ title, cover, averageRating }: Props) => {
         )}
       </div>
       <div className='absolute -bottom-4 left-1/2 flex -translate-x-1/2 items-center gap-2 whitespace-nowrap rounded-full border border-white/70 bg-white/90 px-4 py-2 text-sm font-bold text-slate-700 shadow-lg backdrop-blur dark:border-white/10 dark:bg-slate-950/80 dark:text-slate-200'>
-        <svg
-          viewBox='0 0 20 20'
-          fill='currentColor'
-          className='h-6 w-6 text-amber-400'>
-          <path d='M10 1.5l2.6 5.6 6.1.6-4.6 4.1 1.3 6-5.4-3.1-5.4 3.1 1.3-6-4.6-4.1 6.1-.6z' />
-        </svg>
+        <StarIcon className='h-6 w-6 text-amber-400' />
         {averageRating.toFixed(2)}{' '}
         <span className='font-medium text-slate-400'>/ 5</span>
       </div>
