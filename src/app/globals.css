@@ -25,12 +25,10 @@ body {
   color: var(--foreground);
 }
 
-section + section {
-  @apply mt-24;
-}
-
-#critics section + section {
-  @apply mt-16;
+@layer base {
+  section + section {
+    @apply mt-24;
+  }
 }
 
 @utility scrollbar-none {
@@ -107,21 +105,21 @@ table.draw-heatmap {
   }
 }
 
-.controversy-6 {
-  @apply text-red-700;
-}
-.controversy-5 {
-  @apply text-red-400;
-}
-.controversy-4 {
-  @apply text-yellow-400;
-}
-.controversy-3 {
-  @apply text-emerald-300;
+.controversy-1 {
+  @apply text-emerald-700 dark:text-emerald-300;
 }
 .controversy-2 {
-  @apply text-emerald-500;
+  @apply text-emerald-600 dark:text-emerald-400;
 }
-.controversy-1 {
-  @apply text-emerald-600;
+.controversy-3 {
+  @apply text-lime-700 dark:text-lime-300;
+}
+.controversy-4 {
+  @apply text-amber-600 dark:text-amber-300;
+}
+.controversy-5 {
+  @apply text-rose-600 dark:text-rose-400;
+}
+.controversy-6 {
+  @apply text-red-700 dark:text-red-400;
 }

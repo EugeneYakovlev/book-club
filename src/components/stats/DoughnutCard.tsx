@@ -114,7 +114,7 @@ export const DoughnutCard = ({
       <div className='absolute inset-x-0 top-0 h-1 bg-linear-to-r from-rose-400 via-amber-300 to-emerald-400' />
       <div className='mb-1 flex items-start justify-between gap-4'>
         <div>
-          <p className='mb-1 text-[10px] font-bold uppercase tracking-[0.2em] text-slate-400 dark:text-slate-500'>Рейтинг</p>
+          <p className='mb-1 text-[10px] font-bold uppercase tracking-[0.2em] text-slate-500 dark:text-slate-400'>Рейтинг</p>
           <h3 className='text-sm font-bold text-slate-800 dark:text-slate-100'>{title}</h3>
         </div>
       </div>
@@ -122,7 +122,7 @@ export const DoughnutCard = ({
         <div className='pointer-events-none absolute inset-x-0 bottom-9 top-0 z-10 flex items-center justify-center'>
           <div className='text-center'>
             <p className='text-2xl font-black leading-none tabular-nums text-slate-900 dark:text-white'>{totalValue}</p>
-            <p className='mt-1 text-[9px] font-bold uppercase tracking-wider text-slate-400 dark:text-slate-500'>{totalLabel}</p>
+            <p className='mt-1 text-[9px] font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400'>{totalLabel}</p>
           </div>
         </div>
         <Doughnut

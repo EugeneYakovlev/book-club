@@ -9,7 +9,7 @@ export const AverageRatingRow = ({ averageRating, label }: Props) => {
   return (
     <div className='flex items-end justify-between gap-5'>
       <div>
-        <p className='text-xs font-bold uppercase tracking-[0.18em] text-slate-400 dark:text-slate-500'>
+        <p className='text-xs font-bold uppercase tracking-[0.18em] text-slate-500 dark:text-slate-400'>
           {label}
         </p>
         <div className='mt-1 flex items-center gap-2'>

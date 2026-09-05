@@ -56,7 +56,7 @@ export const ControversialBook = ({ books }: Props) => {
               </div>
             </div>
             <div className='flex items-center justify-between gap-4'>
-              <span className={`rounded-full px-2.5 py-1 text-2xl  tabular-nums font-black uppercase tracking-[0.14em] text-rose-950 bg-white dark:bg-black/90 controversy-${getControversyLevel(featuredBook.controversy)}`}>{featuredBook.controversy.toFixed(2)}</span>
+              <span className={`rounded-full px-2.5 py-1 text-2xl tabular-nums font-black uppercase tracking-[0.14em] bg-white dark:bg-black/90 controversy-${getControversyLevel(featuredBook.controversy)}`}>{featuredBook.controversy.toFixed(2)}</span>
             </div>
           </div>
         </Link>
@@ -64,15 +64,15 @@ export const ControversialBook = ({ books }: Props) => {
         <div className='relative rounded-[1.6rem] z-10 border border-white/70 dark:divide-white/10 dark:border-white/10 dark:bg-white/5 grid md:grid-cols-2 lg:grid-cols-1 xl:grid-cols-2 gap-3'>
           {otherBooks.map((book, index) => (
             <Link key={book.id} href={`/books/${book.slug}`} className='group flex items-center gap-3 px-3 rounded-3xl ring-1 ring-slate-900/5 shadow-[0_18px_35px_-24px_rgba(15,23,42,0.2)] transition hover:bg-white/80 dark:hover:bg-white/5 sm:gap-4 py-3'>
-              <span className='w-2 text-center text-xs font-black tabular-nums text-slate-400 dark:text-slate-500'>{index + 2}</span>
+              <span className='w-2 text-center text-xs font-black tabular-nums text-slate-500 dark:text-slate-400'>{index + 2}</span>
               <Image src={book.cover} alt={book.title} width={64} height={96} className='h-15 w-10 shrink-0 rounded-lg object-cover shadow-sm ring-1 ring-slate-900/8 dark:ring-white/10' />
               <div className='min-w-0 flex-1'>
                 <p className='text-sm line-clamp-3 leading-none font-bold text-slate-800 transition-colors group-hover:text-rose-700 dark:text-slate-100 dark:group-hover:text-rose-300'>{book.title}</p>
-                <p className='mt-1 truncate text-[10px] font-semibold uppercase text-slate-400 dark:text-slate-500'>{book.author}</p>
+                <p className='mt-1 truncate text-[10px] font-semibold uppercase text-slate-500 dark:text-slate-400'>{book.author}</p>
               </div>
               <div className='text-right'>
                 <p className={`text-lg font-black tabular-nums controversy-${getControversyLevel(book.controversy)}`}>{book.controversy.toFixed(2)}</p>
-                <p className='text-[10px] font-semibold text-slate-400 dark:text-slate-500'>{getRatingRange(book)}</p>
+                <p className='text-[10px] font-semibold text-slate-500 dark:text-slate-400'>{getRatingRange(book)}</p>
               </div>
             </Link>
           ))}

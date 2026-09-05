@@ -15,7 +15,7 @@ export const BooksTableHeader = ({ books, hideControls }: Props) => {
         {!hideControls && 
           <th
             scope='col'
-            className='sticky left-0 top-0 z-30 border-b border-r border-slate-200  dark:border-white/10 bg-slate-100 dark:bg-neutral-900 p-3 text-[10px] font-bold uppercase tracking-[0.15em] text-slate-400 dark:text-slate-500'></th>
+            className='sticky left-0 top-0 z-30 border-b border-r border-slate-200  dark:border-white/10 bg-slate-100 dark:bg-neutral-900 p-3 text-[10px] font-bold uppercase tracking-[0.15em] text-slate-500 dark:text-slate-400'></th>
         }
         {books.map((book) => (
           <th

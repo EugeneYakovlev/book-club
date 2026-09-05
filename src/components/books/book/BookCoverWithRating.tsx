@@ -25,7 +25,7 @@ export const BookCoverWithRating = ({ title, cover, averageRating }: Props) => {
       <div className='absolute -bottom-4 left-1/2 flex -translate-x-1/2 items-center gap-2 whitespace-nowrap rounded-full border border-white/70 bg-white/90 px-4 py-2 text-sm font-bold text-slate-700 shadow-lg backdrop-blur dark:border-white/10 dark:bg-slate-950/80 dark:text-slate-200'>
         <StarIcon className='h-6 w-6 text-amber-400' />
         {averageRating.toFixed(2)}{' '}
-        <span className='font-medium text-slate-400'>/ 5</span>
+        <span className='font-medium text-slate-500 dark:text-slate-400'>/ 5</span>
       </div>
     </div>
   )

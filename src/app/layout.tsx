@@ -10,9 +10,24 @@ const roboto = Roboto({
   subsets: ["cyrillic", "latin"],
 });
 
+const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000";
+
 export const metadata: Metadata = {
-  title: "Book Club",
-  description: "four jacks book club",
+  metadataBase: new URL(siteUrl),
+  title: {
+    default: "Book Club — Чотири вальта",
+    template: "%s · Book Club",
+  },
+  description:
+    "Книжковий клуб «Чотири вальта»: прочитані книги, оцінки учасників і статистика обговорень.",
+  openGraph: {
+    type: "website",
+    locale: "uk_UA",
+    siteName: "Book Club",
+    title: "Book Club — Чотири вальта",
+    description:
+      "Книжковий клуб «Чотири вальта»: прочитані книги, оцінки учасників і статистика обговорень.",
+  },
 };
 
 export default function RootLayout({

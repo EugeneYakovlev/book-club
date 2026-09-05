@@ -1,10 +1,11 @@
+import type { Metadata } from 'next'
 import Link from 'next/link'
 import { notFound } from 'next/navigation'
 
 import { Section } from '@/components/layouts/Section'
 import { Panel } from '@/components/ui/Panel'
 import { StarIcon } from '@/components/ui/StarIcon'
-import { getBookBySlug, getMembers } from '@/data/selectors'
+import { getBookBySlug, getBookSlugs, getMembers } from '@/data/selectors'
 
 import { getAverageBookRating, getControversyBookRating, getControversyLevel } from '@/utils/books'
 import { DiscussionDateRow } from '@/components/books/book/DiscussionDateRow'
@@ -12,7 +13,32 @@ import { MemberRating } from '@/components/books/book/MemberRating'
 import { BookCoverWithRating } from '@/components/books/book/BookCoverWithRating'
 
 
-const BookPage = async ({ params }: { params: Promise<{ slug: string }> }) => {
+type Params = { params: Promise<{ slug: string }> }
+
+export const dynamicParams = false
+
+export function generateStaticParams() {
+  return getBookSlugs().map((slug) => ({ slug }))
+}
+
+export async function generateMetadata({ params }: Params): Promise<Metadata> {
+  const { slug } = await params
+  const book = getBookBySlug(slug)
+
+  if (!book) return {}
+
+  const title = `${book.title} — ${book.author}`
+  const description =
+    book.description ?? `${book.title} (${book.year}) — обговорення у книжковому клубі «Чотири вальта».`
+
+  return {
+    title,
+    description,
+    openGraph: { title, description, images: [{ url: book.cover, width: 300, height: 450, alt: book.title }] }
+  }
+}
+
+const BookPage = async ({ params }: Params) => {
   const { slug } = await params
 
   const book = getBookBySlug(slug)
@@ -40,7 +66,7 @@ const BookPage = async ({ params }: { params: Promise<{ slug: string }> }) => {
               <DiscussionDateRow date={book.discussionDate} label='Дата обговорення' />
               <div className='mt-7 flex items-end justify-between gap-4'>
                 <div>
-                  <p className='text-xs font-bold uppercase tracking-[0.18em] text-slate-400 dark:text-slate-500'>Оцінки клубу</p>
+                  <p className='text-xs font-bold uppercase tracking-[0.18em] text-slate-500 dark:text-slate-400'>Оцінки клубу</p>
                 </div>
                 <div className='flex items-center gap-2 text-slate-700 dark:text-slate-200'>
                   <StarIcon className='h-5 w-5 text-amber-400' />
@@ -57,7 +83,7 @@ const BookPage = async ({ params }: { params: Promise<{ slug: string }> }) => {
               </div>
               <Link href='/stats/#controversy-table' className='mt-7 flex items-end justify-between gap-4'>
                 <div>
-                  <p className='text-xs font-bold uppercase tracking-[0.18em] text-slate-400 dark:text-slate-500'>Рейтинг суперечливості</p>
+                  <p className='text-xs font-bold uppercase tracking-[0.18em] text-slate-500 dark:text-slate-400'>Рейтинг суперечливості</p>
                 </div>
                 <div className={`flex items-center gap-2 dark:text-slate-200 controversy-${getControversyLevel(controversyRating || 0)}`}>
                   <span className='text-3xl font-black tracking-tight'>{controversyRating?.toFixed(2)}</span>

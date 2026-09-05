@@ -8,7 +8,7 @@ export const DiscussionDateRow = ({ date, label }: Props) => {
   const discussionDate = formatDiscussionDate(date)
   return (
     <div className='rounded-3xl text-left border border-white/70 bg-white/70 p-5 shadow-sm backdrop-blur-sm dark:border-white/10 dark:bg-white/5 sm:p-6'>
-      <p className='text-[11px] font-bold uppercase tracking-[0.18em] text-slate-400 dark:text-slate-500'>
+      <p className='text-[11px] font-bold uppercase tracking-[0.18em] text-slate-500 dark:text-slate-400'>
         {label}
       </p>
       <div className='mt-3 flex items-center gap-3'>

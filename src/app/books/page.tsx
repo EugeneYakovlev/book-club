@@ -1,9 +1,16 @@
+import type { Metadata } from "next"
+
 import { Section } from "@/components/layouts/Section"
 import { BookCard } from "@/components/books/BookCard"
 import { Panel } from "@/components/ui/Panel"
 import { StarIcon } from "@/components/ui/StarIcon"
 
 import { getBooksWithStats, getMembers } from "@/data/selectors"
+
+export const metadata: Metadata = {
+  title: "Прочитані книги",
+  description: "Каталог усіх книг, прочитаних клубом «Чотири вальта», з оцінками учасників.",
+}
 
 const BooksPage = () => {
   const books = getBooksWithStats()
@@ -27,11 +34,11 @@ const BooksPage = () => {
             </div>
             <div className="flex items-center gap-3">
               <div className="rounded-2xl border border-white/70 bg-white/75 px-4 py-3 text-center shadow-sm backdrop-blur dark:border-white/10 dark:bg-white/5">
-                <p className="text-[10px] font-bold uppercase tracking-[0.14em] text-slate-400 dark:text-slate-500">Книг</p>
+                <p className="text-[10px] font-bold uppercase tracking-[0.14em] text-slate-500 dark:text-slate-400">Книг</p>
                 <p className="mt-0.5 text-xl font-black tabular-nums text-slate-800 dark:text-white">{books.length}</p>
               </div>
               <div className="rounded-2xl border border-white/70 bg-white/75 px-4 py-3 text-center shadow-sm backdrop-blur dark:border-white/10 dark:bg-white/5">
-                <p className="text-[10px] font-bold uppercase tracking-[0.14em] text-slate-400 dark:text-slate-500">Середня</p>
+                <p className="text-[10px] font-bold uppercase tracking-[0.14em] text-slate-500 dark:text-slate-400">Середня</p>
                 <p className="mt-0.5 flex items-center justify-center gap-1 text-xl font-black tabular-nums text-slate-800 dark:text-white">
                   {collectionAverage.toFixed(2)}
                   <StarIcon className="h-4.5 w-4.5 text-amber-400" />

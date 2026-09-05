@@ -1,3 +1,5 @@
+import type { Metadata } from 'next'
+
 import { Section } from '@/components/layouts/Section'
 
 import { BooksTable } from '@/components/stats/BooksTable'
@@ -6,6 +8,11 @@ import { CriticsRating } from '@/components/stats/CriticsRating'
 import { RatingsChart } from '@/components/stats/RatingsChart'
 
 import { getBooksWithStats, getMembers } from '@/data/selectors'
+
+export const metadata: Metadata = {
+  title: 'Статистика',
+  description: 'Таблиця оцінок, найсуперечливіші книги та розподіл оцінок клубу «Чотири вальта».',
+}
 
 const StatsPage = () => {
   const books = getBooksWithStats()
@@ -20,11 +27,11 @@ const StatsPage = () => {
         <Section eyebrow='Яблуко розбрату'>
           <ControversialBook books={books} />
         </Section>
-        <div id='critics'>
+        <div>
           <Section eyebrow='Леґенди'>
             <CriticsRating books={books} members={members} />
           </Section>
-          <Section eyebrow='Оцінювання'>
+          <Section eyebrow='Оцінювання' className='mt-16'>
             <RatingsChart books={books} />
           </Section>
         </div>

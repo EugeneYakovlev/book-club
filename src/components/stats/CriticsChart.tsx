@@ -20,6 +20,7 @@ import { Line } from 'react-chartjs-2'
 import Image from 'next/image'
 
 import { getCumulativeTopRatingsByMember } from '@/utils/member'
+import { useTheme } from '@/components/providers/ThemeProvider'
 
 interface Props {
   books: Book[]
@@ -40,6 +41,7 @@ ChartJS.register(
 
 export const CriticsChart = ({ books, members, yLabel, mode = 'highest' }: Props) => {
   const { labels, datasets } = getCumulativeTopRatingsByMember(books, members, mode)
+  const { isDark } = useTheme()
   const [hoveredMemberId, setHoveredMemberId] = useState<number | null>(null)
   const [hiddenMemberIds, setHiddenMemberIds] = useState<number[]>([])
 
@@ -77,6 +79,9 @@ export const CriticsChart = ({ books, members, yLabel, mode = 'highest' }: Props
     }
   })
 
+  const axisColor = isDark ? '#94a3b8' : '#475569'
+  const gridColor = isDark ? 'rgba(148,163,184,0.16)' : 'rgba(15,23,42,0.08)'
+
   const chartOptions: ChartOptions<'line'> = {
     responsive: true,
     maintainAspectRatio: false,
@@ -102,6 +107,9 @@ export const CriticsChart = ({ books, members, yLabel, mode = 'highest' }: Props
         display: false
       },
       tooltip: {
+        backgroundColor: isDark ? '#1e293b' : '#0f172a',
+        cornerRadius: 10,
+        padding: 12,
         callbacks: {
           title: (context) => {
             const index = context[0]?.dataIndex ?? 0
@@ -123,12 +131,20 @@ export const CriticsChart = ({ books, members, yLabel, mode = 'highest' }: Props
       x: {
         title: {
           display: true,
-          text: 'Книги'
+          text: 'Книги',
+          color: axisColor
         },
         ticks: {
           maxRotation: 45,
           minRotation: 0,
+          color: axisColor,
           callback: (_, index) => `${index + 1}`
+        },
+        grid: {
+          color: gridColor
+        },
+        border: {
+          color: gridColor
         }
       },
       y: {
@@ -136,7 +152,17 @@ export const CriticsChart = ({ books, members, yLabel, mode = 'highest' }: Props
         suggestedMax: Math.max(1, ...datasets.flatMap((dataset) => dataset.data)) + 1,
         title: {
           display: true,
-          text: yLabel
+          text: yLabel,
+          color: axisColor
+        },
+        ticks: {
+          color: axisColor
+        },
+        grid: {
+          color: gridColor
+        },
+        border: {
+          color: gridColor
         }
       }
     }

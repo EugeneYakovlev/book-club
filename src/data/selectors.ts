@@ -26,6 +26,14 @@ export function getBooksWithStats(): BookWithStats[] {
     }))
 }
 
+export function getBookSlugs(): string[] {
+  return homeData.books.map((book) => book.slug)
+}
+
+export function getMemberSlugs(): string[] {
+  return homeData.members.map((member) => member.slug)
+}
+
 export function getBookBySlug(slug: string): Book | undefined {
   return homeData.books.find((book) => book.slug === slug)
 }

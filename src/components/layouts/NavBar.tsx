@@ -2,18 +2,45 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { useSyncExternalStore } from "react";
 
 import { useTheme } from "@/components/providers/ThemeProvider";
 
-const NavBar = () => {
-  const navList = [
-    { link: '/', title: 'Головна' },
-    { link: '/books', title: 'Книги'},
-    { link: '/stats', title: 'Статистика'},
-    { link: '/#members', title: 'Учасники'}
-  ]
+const MEMBERS_HASH = '#members'
 
+const navList = [
+  {
+    link: '/',
+    title: 'Головна',
+    isActive: (pathname: string, hash: string) => pathname === '/' && hash !== MEMBERS_HASH
+  },
+  {
+    link: '/books',
+    title: 'Книги',
+    isActive: (pathname: string) => pathname === '/books' || pathname.startsWith('/books/')
+  },
+  {
+    link: '/stats',
+    title: 'Статистика',
+    isActive: (pathname: string) => pathname === '/stats' || pathname.startsWith('/stats/')
+  },
+  {
+    link: `/${MEMBERS_HASH}`,
+    title: 'Учасники',
+    isActive: (pathname: string, hash: string) =>
+      pathname.startsWith('/members/') || (pathname === '/' && hash === MEMBERS_HASH)
+  }
+]
+
+function subscribeToHash(callback: () => void) {
+  window.addEventListener('hashchange', callback)
+
+  return () => window.removeEventListener('hashchange', callback)
+}
+
+const NavBar = () => {
   const pathname = usePathname()
+  const hash = useSyncExternalStore(subscribeToHash, () => window.location.hash, () => '')
   const { isDark, toggleTheme } = useTheme()
 
   return (
@@ -27,7 +54,7 @@ const NavBar = () => {
 
         <ul className="flex max-sm:w-full max-sm:justify-between items-center gap-0.5 rounded-xl bg-slate-100/80 p-1 dark:bg-white/5">
           { navList.map((navItem) => {
-            const isActive = pathname === navItem.link
+            const isActive = navItem.isActive(pathname, hash)
             return (
               <li key={navItem.link}>
                 <Link

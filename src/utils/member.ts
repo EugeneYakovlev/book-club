@@ -37,10 +37,6 @@ export function getMemberAverageRating(memberRatings: MemberBookRating[]) {
   return sum / memberRatings.length
 }
 
-export function getMemberBooksCount(memberRatings: MemberBookRating[]) {
-  return memberRatings.length
-}
-
 export function getMemberHighestRating(memberRatings: MemberBookRating[]) {
   if (memberRatings.length === 0) {
     return null

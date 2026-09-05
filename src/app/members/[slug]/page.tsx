@@ -1,16 +1,40 @@
+import type { Metadata } from 'next'
 import Image from 'next/image'
 import Link from 'next/link'
 import { notFound } from 'next/navigation'
 
 import { Section } from '@/components/layouts/Section'
 import { Panel } from '@/components/ui/Panel'
-import { getBooksWithStats, getMemberBySlug } from '@/data/selectors'
+import { getBooksWithStats, getMemberBySlug, getMemberSlugs } from '@/data/selectors'
 import { getMemberAverageRating, getMemberHighestRating, getMemberLowestRating, getMemberRatings, getMemberRatingCounts, getLeadersFromMembers } from '@/utils/member'
 import { AverageRatingRow } from '@/components/members/member/AverageRatingRow'
 import { RatingHighlight } from '@/components/members/member/RatingHighlight'
 import { BooksTable } from '@/components/stats/BooksTable'
 
-const MemberPage = async ({ params }: { params: Promise<{ slug: string }> }) => {
+type Params = { params: Promise<{ slug: string }> }
+
+export const dynamicParams = false
+
+export function generateStaticParams() {
+  return getMemberSlugs().map((slug) => ({ slug }))
+}
+
+export async function generateMetadata({ params }: Params): Promise<Metadata> {
+  const { slug } = await params
+  const member = getMemberBySlug(slug)
+
+  if (!member) return {}
+
+  const description = `${member.name} — ${member.role ?? 'учасник'} книжкового клубу «Чотири вальта»: оцінки та статистика.`
+
+  return {
+    title: member.name,
+    description,
+    openGraph: { title: member.name, description, images: [{ url: member.pic, width: 500, height: 650, alt: member.name }] }
+  }
+}
+
+const MemberPage = async ({ params }: Params) => {
   const { slug } = await params
 
   const books = getBooksWithStats()
