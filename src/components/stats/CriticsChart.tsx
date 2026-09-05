@@ -212,28 +212,32 @@ export const CriticsChart = ({ books, members, yLabel, mode = 'highest' }: Props
         })}
       </div>
 
-      <div className='h-96 w-full'>
-        <Line data={{ labels, datasets: chartDatasets }} options={chartOptions} />
-      </div>
-
-      <div className='flex justify-between pl-6 w-[calc(100%+10px)] gap-2'>
-        {books.map((book) => (
-          <div
-            key={book.id}
-            title={book.title}
-            className='group relative flex max-w-11 w-full flex-col'
-          >
-            <div className='flex max-h-16 min-h-full max-w-11 w-full justify-center overflow-hidden rounded-md border border-slate-200 bg-white shadow-sm transition-all duration-200 dark:border-white/10 dark:bg-slate-900/50'>
-              <Image
-                src={book.cover}
-                alt={book.title}
-                width={80}
-                height={120}
-                className='h-full w-full object-cover'
-              />
-            </div>
+      <div className='-mx-2 overflow-x-auto scrollbar-none px-2'>
+        <div className='min-w-150'>
+          <div className='h-96 w-full'>
+            <Line data={{ labels, datasets: chartDatasets }} options={chartOptions} />
           </div>
-        ))}
+
+          <div className='flex w-[calc(100%+10px)] justify-between gap-2 pl-6'>
+            {books.map((book) => (
+              <div
+                key={book.id}
+                title={book.title}
+                className='group relative flex w-full max-w-11 flex-col'
+              >
+                <div className='flex max-h-16 min-h-full w-full max-w-11 justify-center overflow-hidden rounded-md border border-slate-200 bg-white shadow-sm transition-all duration-200 dark:border-white/10 dark:bg-slate-900/50'>
+                  <Image
+                    src={book.cover}
+                    alt={book.title}
+                    width={80}
+                    height={120}
+                    className='h-full w-full object-cover'
+                  />
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
       </div>
     </div>
   )
