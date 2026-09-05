@@ -34,14 +34,23 @@ export const DoughnutCard = ({
   const chartOptions: ChartOptions<'doughnut'> = {
     responsive: true,
     maintainAspectRatio: false,
+    cutout: '70%',
+    layout: {
+      padding: 8
+    },
     plugins: {
       legend: {
         position: 'bottom',
         labels: {
           usePointStyle: true,
-          padding: 12,
-          boxWidth: 6,
-          boxHeight: 6,
+          color: document.documentElement.classList.contains('dark') ? '#cbd5e1' : '#475569',
+          padding: 14,
+          boxWidth: 8,
+          boxHeight: 8,
+          font: {
+            family: 'ui-monospace, SFMono-Regular, Menlo, monospace',
+            size: 11
+          },
           filter: (legendItem: LegendItem, data: ChartData<'doughnut'>) => {
             const index = legendItem.index
             if (index === undefined) return false
@@ -52,6 +61,9 @@ export const DoughnutCard = ({
         }
       },
       tooltip: {
+        backgroundColor: '#0f172a',
+        cornerRadius: 10,
+        padding: 12,
         displayColors: false,
         callbacks: {
           title: (context) => `${context[0].label}⭐`,
@@ -84,20 +96,31 @@ export const DoughnutCard = ({
         label: title,
         data: ratingLabels.map((item) => counts[Number(item)]),
         backgroundColor: ratingColors,
-        borderColor: '#ffffff',
-        borderWidth: 1,
-        hoverOffset: 12
+        borderColor: 'transparent',
+        borderWidth: 3,
+        borderRadius: 8,
+        spacing: 2,
+        hoverOffset: 8
       }
     ]
   })
 
   return (
-    <div className='rounded-xl border border-slate-200 dark:border-white/10 p-4 shadow-[0_30px_70px_-48px_rgba(136,19,55,0.45)]'>
-      <h3 className='mb-2 text-sm font-semibold text-slate-700 dark:text-slate-200'>{title}</h3>
-      <p className='mb-3 text-xs text-slate-500 dark:text-slate-400'>
-        {totalLabel}: {totalValue}
-      </p>
-      <div className='h-64'>
+    <div className='group relative overflow-hidden rounded-2xl border border-slate-200/80 bg-linear-to-br from-white via-white to-rose-50/60 p-5 shadow-[0_24px_60px_-40px_rgba(15,23,42,0.45)] transition duration-300 dark:border-white/10 dark:from-slate-900 dark:via-slate-900 dark:to-rose-950/30'>
+      <div className='absolute inset-x-0 top-0 h-1 bg-linear-to-r from-rose-400 via-amber-300 to-emerald-400' />
+      <div className='mb-1 flex items-start justify-between gap-4'>
+        <div>
+          <p className='mb-1 text-[10px] font-bold uppercase tracking-[0.2em] text-slate-400 dark:text-slate-500'>Рейтинг</p>
+          <h3 className='text-sm font-bold text-slate-800 dark:text-slate-100'>{title}</h3>
+        </div>
+      </div>
+      <div className='relative h-64'>
+        <div className='pointer-events-none absolute inset-x-0 bottom-9 top-0 z-10 flex items-center justify-center'>
+          <div className='text-center'>
+            <p className='text-2xl font-black leading-none tabular-nums text-slate-900 dark:text-white'>{totalValue}</p>
+            <p className='mt-1 text-[9px] font-bold uppercase tracking-wider text-slate-400 dark:text-slate-500'>{totalLabel}</p>
+          </div>
+        </div>
         <Doughnut
           options={chartOptions}
           data={buildChartData(data)}
