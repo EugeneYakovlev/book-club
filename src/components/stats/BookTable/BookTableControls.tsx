@@ -2,6 +2,7 @@ import type { Member } from "@/types/member";
 
 import { PillButton } from "@/components/ui/PillButton";
 import { MemberMultiSelect } from './MemberMultiSelect'
+import { HeatMapLegend } from './HeatMapLegend'
 
 interface Props {
   members: Member[]
@@ -17,7 +18,7 @@ interface Props {
 export const BookTableControls = ({ members, selectedMembers, isHeatMapActive, isAverageRowDisplayed, onToggleMember, onSelectAllMembers, onToggleHeatMap, onToggleAverageRow }: Props) => {
   return (
     <div className='mb-4 flex flex-wrap items-center justify-between gap-3'>
-      <div className='flex flex-wrap items-center gap-1.5'>
+      <div className='flex flex-wrap items-center gap-1.5 w-1/3'>
         <MemberMultiSelect
           members={members}
           selectedMembers={selectedMembers}
@@ -25,7 +26,8 @@ export const BookTableControls = ({ members, selectedMembers, isHeatMapActive, i
           onSelectAllMembers={onSelectAllMembers}
         />
       </div>
-      <div className='flex items-center justify-end gap-2'>
+      {isHeatMapActive && <HeatMapLegend />}
+      <div className='flex items-center w-1/3 justify-end gap-2'>
         <PillButton isActive={isAverageRowDisplayed} aria-pressed={isAverageRowDisplayed} onClick={onToggleAverageRow}>
           Загальні оцінки
         </PillButton>

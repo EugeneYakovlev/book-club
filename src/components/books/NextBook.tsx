@@ -8,7 +8,7 @@ interface Props {
 
 export const NextBook = ({ book }: Props) => {
   return (
-    <div className='mt-10 max-w-5xl mx-auto overflow-hidden rounded-4xl bg-white shadow-[0_30px_60px_-30px_rgba(15,23,42,0.4)] ring-1 ring-black/5 transition duration-300 lg:hover:-translate-y-1 lg:hover:shadow-2xl md:flex dark:bg-neutral-950 dark:ring-white/10'>
+    <div className='mt-10 max-w-5xl mx-auto overflow-hidden rounded-4xl bg-white shadow-[0_30px_60px_-30px_rgba(15,23,42,0.4)] ring-1 ring-black/5 transition duration-300 md:flex dark:bg-neutral-950 dark:ring-white/10'>
       <div className='relative mx-auto w-full max-w-xs shrink-0 p-6 sm:max-w-sm md:mx-0 md:w-80 md:p-8'>
         <div className='absolute inset-x-0 -top-6 h-32 rounded-b-4xl bg-linear-to-r from-sky-500 to-indigo-500 opacity-20 blur-2xl' />
         <Image

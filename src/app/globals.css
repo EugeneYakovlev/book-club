@@ -71,7 +71,7 @@ table tbody tr:last-child td, table tbody tr:last-child th {
   @apply border-b-0;
 }
 
-table.draw-heatmap {
+.draw-heatmap {
   .rating-1 {
     @apply bg-rose-200 dark:bg-rose-500/20;
   }

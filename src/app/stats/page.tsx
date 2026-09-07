@@ -20,7 +20,11 @@ const StatsPage = () => {
 
   return (
     <>
-      <Section eyebrow='Статистика'>
+      <Section eyebrow='Статистика' title='Таблиця оцінок'>
+        <p className='mx-auto mt-4 max-w-2xl text-center text-sm leading-6 text-slate-500 dark:text-slate-400'>
+          Усі оцінки клубу в одній таблиці. Наведіть на книгу, щоб підсвітити колонку,
+          або увімкніть теплову мапу, щоб побачити високі й низькі оцінки кольором.
+        </p>
         <BooksTable books={books} members={members} />
       </Section>
       <div className='mt-8 lg:grid lg:grid-cols-2 lg:gap-8'>
