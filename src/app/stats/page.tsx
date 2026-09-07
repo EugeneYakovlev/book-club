@@ -25,7 +25,7 @@ const StatsPage = () => {
       </Section>
       <div className='mt-8 lg:grid lg:grid-cols-2 lg:gap-8'>
         <Section eyebrow='Яблуко розбрату'>
-          <ControversialBook books={books} />
+          <ControversialBook books={books} members={members} />
         </Section>
         <div>
           <Section eyebrow='Леґенди'>

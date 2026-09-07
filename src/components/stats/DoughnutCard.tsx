@@ -119,7 +119,7 @@ export const DoughnutCard = ({
         </div>
       </div>
       <div className='relative h-64'>
-        <div className='pointer-events-none absolute inset-x-0 bottom-9 top-0 z-10 flex items-center justify-center'>
+        <div className='pointer-events-none absolute inset-x-0 bottom-9 top-0 z-0 flex items-center justify-center'>
           <div className='text-center'>
             <p className='text-2xl font-black leading-none tabular-nums text-slate-900 dark:text-white'>{totalValue}</p>
             <p className='mt-1 text-[9px] font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400'>{totalLabel}</p>

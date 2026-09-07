@@ -1,6 +1,44 @@
 import type { Rating } from "@/types/rating";
 import type { Member } from "@/types/member";
+import type { BookWithStats } from "@/types/book";
 
+export interface RatingAxisScale {
+  min: number;
+  max: number;
+  ticks: number[];
+}
+
+const TICK_STEPS = [0.1, 0.25, 0.5, 1];
+const MAX_TICKS = 8;
+
+export function getRatingAxis(books: BookWithStats[]): RatingAxisScale {
+  const values = books.flatMap((book) => (book.ratings ?? []).map((rating) => rating.value));
+
+  if (values.length === 0) return { min: 1, max: 5, ticks: [1, 2, 3, 4, 5] };
+
+  const lowest = Math.min(...values);
+  const highest = Math.max(...values);
+  const padding = Math.max((highest - lowest) * 0.04, 0.05);
+
+  const min = lowest - padding;
+  const max = highest + padding;
+
+  const step =
+    TICK_STEPS.find((candidate) => (max - min) / candidate <= MAX_TICKS) ??
+    TICK_STEPS[TICK_STEPS.length - 1];
+
+  const ticks: number[] = [];
+
+  for (let tick = Math.ceil(min / step) * step; tick <= max; tick += step) {
+    ticks.push(Math.round(tick * 100) / 100);
+  }
+
+  return { min, max, ticks };
+}
+
+export function toAxisPercent(value: number, axis: RatingAxisScale) {
+  return ((value - axis.min) / (axis.max - axis.min)) * 100;
+}
 export function getRatingsBreakdown(
   ratings: Rating[],
   members: Member[]
