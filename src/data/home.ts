@@ -4,6 +4,17 @@ import type { Member } from '@/types/member'
 export const homeData = {
   books: [
     {
+      id: 14,
+      title: 'Згодом',
+      slug: 'zghodom',
+      description: 'Джеймі — в усьому звичайний хлопчик зі звичайної неповної сім’ї, крім одного. Він бачить мертвих і може розмовляти з ними. До того ж покійники мусять завжди чесно відповідати на його запитання. Мама наказувала нікому не розповідати про цю моторошну здібність, проте зберегти таємницю не вдалося. Відчайдушна детективка, мамина подруга, планує розкрити справу зловісного нью-йоркського терориста з допомогою хлопчика. Убивця вже відійшов у засвіти, а його бомба цокає десь у місті й ось-ось збере кривавий урожай. Джеймі може дізнатися, де він її заховав. Але цей мрець не схожий на інших...',
+      author: 'Стівен Кінг',
+      cover: '/images/books/king.webp',
+      year: 2021,
+      discussionDate: '22 Oct 2026',
+      currentlyReading: true
+    },
+    {
       id: 13,
       title: 'Листоноша завжди дзвонить двічі',
       slug: 'lystonosha-zavzhdy-dzvonyt-dvichi',
@@ -12,7 +23,6 @@ export const homeData = {
       cover: '/images/books/ringstwice.webp',
       year: 1934,
       discussionDate: '29 Sep 2026',
-      currentlyReading: true,
       ratings: [
         { memberId: 1, value: 3.73, label: '' },
         { memberId: 2, value: 3.33, label: '' },
