@@ -12,6 +12,7 @@ export const homeData = {
       cover: '/images/books/ringstwice.webp',
       year: 1934,
       discussionDate: '29 Sep 2026',
+      currentlyReading: true,
       ratings: [
         { memberId: 1, value: 3.73, label: '' },
         { memberId: 2, value: 3.33, label: '' },
