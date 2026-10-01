@@ -131,7 +131,7 @@ const BookPage = async ({ params }: Params) => {
                     <StatBadge
                       href='/stats/#controversy-table'
                       label='Найсуперечливіша книжка'
-                      tooltip={`Найбільший розкид оцінок у клубі — думки розійшлися найсильніше: ${records.highestControversy.toFixed(2)}`}
+                      tooltip={`Найбільший розкид оцінок — думки учасників розійшлися найсильніше: ${records.highestControversy.toFixed(2)}`}
                       toneClassName={controversyBadgeTone}
                     />
                   )}
@@ -139,7 +139,7 @@ const BookPage = async ({ params }: Params) => {
                     <StatBadge
                       href='/stats/#controversy-table'
                       label='Унісон клубу'
-                      tooltip={`Найменший розкид оцінок — тут клуб зійшовся в думках: ${records.lowestControversy.toFixed(2)}`}
+                      tooltip={`Найменший розкид оцінок — думки учасників зійшлися найсильніше: ${records.lowestControversy.toFixed(2)}`}
                       toneClassName={controversyBadgeTone}
                     />
                   )}
