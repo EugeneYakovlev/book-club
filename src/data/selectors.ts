@@ -26,6 +26,31 @@ export function getBooksWithStats(): BookWithStats[] {
     }))
 }
 
+export interface BookSuperlatives {
+  highestAverage: number
+  lowestAverage: number
+  highestControversy: number
+  lowestControversy: number
+}
+
+export function getBookSuperlatives(): BookSuperlatives | null {
+  const books = getBooksWithStats()
+
+  const averages = books.map((book) => book.average)
+  const controversies = books
+    .map((book) => book.controversy)
+    .filter((value): value is number => value !== null)
+
+  if (averages.length < 2 || controversies.length < 2) return null
+
+  return {
+    highestAverage: Math.max(...averages),
+    lowestAverage: Math.min(...averages),
+    highestControversy: Math.max(...controversies),
+    lowestControversy: Math.min(...controversies)
+  }
+}
+
 export function getBookSlugs(): string[] {
   return homeData.books.map((book) => book.slug)
 }

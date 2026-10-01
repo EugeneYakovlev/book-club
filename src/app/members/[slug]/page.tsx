@@ -1,10 +1,11 @@
 import type { Metadata } from 'next'
 import Image from 'next/image'
-import Link from 'next/link'
 import { notFound } from 'next/navigation'
 
 import { Section } from '@/components/layouts/Section'
 import { Panel } from '@/components/ui/Panel'
+import { StatBadge } from '@/components/ui/StatBadge'
+import { toneStyles } from '@/styles/tones'
 import { getBooksWithStats, getMemberBySlug, getMemberSlugs } from '@/data/selectors'
 import { getMemberAverageRating, getMemberHighestRating, getMemberLowestRating, getMemberRatings, getMemberRatingCounts, getLeadersFromMembers } from '@/utils/member'
 import { AverageRatingRow } from '@/components/members/member/AverageRatingRow'
@@ -82,22 +83,20 @@ const MemberPage = async ({ params }: Params) => {
               {(loyalLeader || criticLeader) && (
                 <div className='mt-4 flex flex-wrap gap-2'>
                   {loyalLeader && (
-                    <Link href='/stats/loyal' className='group relative inline-flex items-center gap-1.5 rounded-full bg-emerald-100 px-3 py-1.5 text-[10px] font-bold uppercase tracking-[0.12em] text-emerald-700 dark:bg-emerald-400/10 dark:text-emerald-300'>
-                      Найлояльніший читач
-                      <span className='flex pl-px h-4 w-4 items-center text-center justify-center rounded-full border border-current text-[9px] normal-case leading-none'>i</span>
-                      <span role='tooltip' className='pointer-events-none absolute max-md:bottom-full max-md:left-0 md:left-full md:ml-4 z-20 mb-2 w-58 rounded-xl bg-slate-900 px-3 py-2 text-left text-[11px] font-medium normal-case leading-4 tracking-normal text-white opacity-0 shadow-lg transition duration-200 group-hover:opacity-100 group-focus:opacity-100 dark:bg-white dark:text-slate-900'>
-                        Поставив найбільшу кількість найвищих оцінок: {loyalLeader.count}
-                      </span>
-                    </Link>
+                    <StatBadge
+                      href='/stats/loyal'
+                      label='Найлояльніший читач'
+                      tooltip={`Поставив найбільшу кількість найвищих оцінок: ${loyalLeader.count}`}
+                      toneClassName={toneStyles.emerald.badge}
+                    />
                   )}
                   {criticLeader && (
-                    <Link href='/stats/critic' className='group relative inline-flex items-center gap-1.5 rounded-full bg-rose-100 px-3 py-1.5 text-[10px] font-bold uppercase tracking-[0.12em] text-rose-700 dark:bg-rose-400/10 dark:text-rose-300'>
-                      Найсуворіший критик
-                      <span className='flex pl-px h-4 w-4 items-center justify-center rounded-full border border-current text-[9px] normal-case leading-none'>i</span>
-                      <span role='tooltip' className='pointer-events-none absolute max-md:bottom-full max-md:left-0 md:left-full md:ml-4 z-20 mb-2 w-58 rounded-xl bg-slate-900 px-3 py-2 text-left text-[11px] font-medium normal-case leading-4 tracking-normal text-white opacity-0 shadow-lg transition duration-200 group-hover:opacity-100 group-focus:opacity-100 dark:bg-white dark:text-slate-900'>
-                        Поставив найбільшу кількість найнижчих оцінок: {criticLeader.count}
-                      </span>
-                    </Link>
+                    <StatBadge
+                      href='/stats/critic'
+                      label='Найсуворіший критик'
+                      tooltip={`Поставив найбільшу кількість найнижчих оцінок: ${criticLeader.count}`}
+                      toneClassName={toneStyles.rose.badge}
+                    />
                   )}
                 </div>
               )}

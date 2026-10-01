@@ -1,6 +1,7 @@
 export type Tone = 'emerald' | 'rose'
 
 interface ToneStyle {
+  badge: string
   card: string
   ring: string
   title: string
@@ -11,6 +12,7 @@ interface ToneStyle {
 
 export const toneStyles: Record<Tone, ToneStyle> = {
   emerald: {
+    badge: 'bg-emerald-100 text-emerald-700 dark:bg-emerald-400/10 dark:text-emerald-300',
     card: 'border-emerald-200/80 bg-emerald-50/80 dark:border-emerald-400/20 dark:bg-emerald-400/5',
     ring: 'ring-emerald-900/10 dark:ring-emerald-100/10',
     title: 'text-emerald-600 dark:text-emerald-300',
@@ -19,6 +21,7 @@ export const toneStyles: Record<Tone, ToneStyle> = {
     score: 'bg-emerald-50 text-emerald-700 dark:bg-emerald-400/10 dark:text-emerald-300'
   },
   rose: {
+    badge: 'bg-rose-100 text-rose-700 dark:bg-rose-400/10 dark:text-rose-300',
     card: 'border-rose-200/80 bg-rose-50/80 dark:border-rose-400/20 dark:bg-rose-400/5',
     ring: 'ring-rose-900/10 dark:ring-rose-100/10',
     title: 'text-rose-600 dark:text-rose-300',
