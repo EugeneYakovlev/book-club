@@ -18,7 +18,7 @@ interface Props {
 export const BookTableControls = ({ members, selectedMembers, isHeatMapActive, isAverageRowDisplayed, onToggleMember, onSelectAllMembers, onToggleHeatMap, onToggleAverageRow }: Props) => {
   return (
     <div className='mb-4 flex flex-wrap items-center justify-between gap-3'>
-      <div className='flex flex-wrap items-center gap-1.5 w-1/3'>
+      <div className='flex flex-wrap items-center gap-1.5'>
         <MemberMultiSelect
           members={members}
           selectedMembers={selectedMembers}
@@ -27,7 +27,7 @@ export const BookTableControls = ({ members, selectedMembers, isHeatMapActive, i
         />
       </div>
       {isHeatMapActive && <HeatMapLegend />}
-      <div className='flex items-center w-1/3 justify-end gap-2'>
+      <div className='flex items-center justify-end gap-2'>
         <PillButton isActive={isAverageRowDisplayed} aria-pressed={isAverageRowDisplayed} onClick={onToggleAverageRow}>
           Загальні оцінки
         </PillButton>

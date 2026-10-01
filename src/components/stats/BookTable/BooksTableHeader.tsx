@@ -19,7 +19,7 @@ export const BooksTableHeader = ({ books, hideControls, hoveredBookId, isScrolle
         {!hideControls && (
           <th
             scope='col'
-            className={`sticky left-0 z-30 w-28 border-b border-r border-slate-200 bg-slate-100 p-3 transition-shadow dark:border-white/10 dark:bg-neutral-900 ${
+            className={`sticky left-0 z-30 w-22 2xl:w-24 border-b border-r border-slate-200 bg-slate-100 p-3 transition-shadow dark:border-white/10 dark:bg-neutral-900 ${
               isScrolled ? 'shadow-[6px_0_10px_-6px_rgba(15,23,42,0.35)]' : ''
             }`}>
             <span className='sr-only'>Учасник</span>
@@ -35,14 +35,14 @@ export const BooksTableHeader = ({ books, hideControls, hoveredBookId, isScrolle
               onMouseEnter={() => onHoverBook(book.id)}
               onMouseLeave={() => onHoverBook(null)}
               style={{ boxShadow: getColumnHighlight(isHovered, { top: true }) }}
-              className='w-34 min-w-34 border-b border-r border-slate-200 bg-slate-100 p-3 align-top last:border-r-0 dark:border-white/10 dark:bg-neutral-900 2xl:w-44 2xl:min-w-44'>
+              className='border-b border-r border-slate-200 bg-slate-100 p-3 align-top last:border-r-0 dark:border-white/10 dark:bg-neutral-900 w-26 min-w-26 2xl:w-30 2xl:min-w-30'>
               <Link href={`/books/${book.slug}`} className='group block'>
                 { book.discussionDate && (
                   <span className='mb-1 block text-[9px] text-center font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400'>
                     {new Date(book.discussionDate).toLocaleDateString('uk')}
                   </span>
                 )}
-                <div className='relative mx-auto aspect-2/3 w-24 overflow-hidden rounded-xl bg-slate-200 shadow-sm ring-1 ring-slate-900/8 dark:bg-white/10 lg:w-28 2xl:w-28'>
+                <div className='relative mx-auto aspect-2/3 overflow-hidden rounded-xl bg-slate-200 shadow-sm ring-1 ring-slate-900/8 dark:bg-white/10 w-20 2xl:w-26'>
                   <Image
                     src={book.cover}
                     alt={book.title}
