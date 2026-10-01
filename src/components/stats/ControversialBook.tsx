@@ -38,7 +38,7 @@ export const ControversialBook = ({ books, members }: Props) => {
   const axis = getRatingAxis(controversialBooks)
 
   return (
-    <Panel id='controversy-table' tone='rose' className='mt-8 @container'>
+    <Panel id='controversy-table' tone='rose' className='mt-8 @container h-full'>
       <div className='border-b border-slate-200/70 pb-5 dark:border-white/10'>
         <p className='text-xs font-bold uppercase tracking-[0.18em] text-rose-600 dark:text-rose-300'>
           Рейтинг найсуперечливіших книг

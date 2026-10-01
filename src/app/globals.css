@@ -71,6 +71,10 @@ table tbody tr:last-child td, table tbody tr:last-child th {
   @apply border-b-0;
 }
 
+.stats--right-panel section:last-child {
+  @apply mb-0;
+}
+
 .draw-heatmap {
   .rating-1 {
     @apply bg-rose-200 dark:bg-rose-500/20;
