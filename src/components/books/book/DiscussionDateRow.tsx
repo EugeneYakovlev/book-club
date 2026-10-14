@@ -12,7 +12,7 @@ export const DiscussionDateRow = ({ date, label, compact }: Props) => {
       <p className={'font-bold ' +(compact ? 'text-[10px]' : 'text-[11px]') + ' uppercase tracking-[0.18em] text-slate-500 dark:text-slate-400'}>
         {label}
       </p>
-      <div className={'flex items-center gap-3' + (compact ? ' mt-0' : 'mt-3')}>
+      <div className={'flex items-center gap-3 ' + (compact ? ' mt-0' : 'mt-3')}>
         <div className={'flex ' + (compact ? 'h-8 w-8' : 'h-10 w-10') + ' shrink-0 items-center justify-center rounded-2xl bg-violet-100 text-violet-700 dark:bg-violet-500/15 dark:text-violet-300'}>
           <svg
             viewBox='0 0 24 24'

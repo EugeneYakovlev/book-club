@@ -53,7 +53,7 @@ export const BookTimeline = ({ books }: Props) => {
   const trackHeight = 38 + (tallestCluster - 1) * CLUSTER_OFFSET
 
   return (
-    <Panel className='@container mx-auto mt-10 max-w-5xl'>
+    <Panel className='@container mx-auto mt-10'>
       <p className='text-xs font-bold uppercase tracking-[0.18em] text-violet-600 dark:text-violet-300'>
         Роки видання
       </p>
@@ -62,7 +62,7 @@ export const BookTimeline = ({ books }: Props) => {
       </p>
 
       <div className='relative mt-8'>
-        <div className='relative mb-2 hidden h-5 @2xl:block'>
+        <div className='relative mb-2 hidden h-5 @xl:block'>
           {segments.map(({ era, count, start, width }) => (
             <span
               key={era.id}
@@ -76,45 +76,46 @@ export const BookTimeline = ({ books }: Props) => {
           ))}
         </div>
 
-        <div
-          className='relative overflow-hidden rounded-2xl border border-slate-200/70 bg-white/60 dark:border-white/10 dark:bg-white/5'
-          style={{ height: `${trackHeight}px` }}>
-          {segments.map(({ era, start, width }, index) => (
-            <span
-              key={era.id}
-              aria-hidden='true'
-              className={`absolute inset-y-0 ${
-                index % 2 === 0 ? 'bg-violet-100/70 dark:bg-violet-400/10' : 'bg-transparent'
-              }`}
-              style={{ left: `${start}%`, width: `${width}%` }}
-            />
-          ))}
+        <div className='relative' style={{ height: `${trackHeight}px` }}>
+          {/* Bands and grid are clipped to the rounded border; the dots above them are not,
+              so their tooltips can overflow the track. */}
+          <div className='absolute inset-0 overflow-hidden rounded-2xl border border-slate-200/70 bg-white/60 dark:border-white/10 dark:bg-white/5'>
+            {segments.map(({ era, start, width }, index) => (
+              <span
+                key={era.id}
+                aria-hidden='true'
+                className={`absolute inset-y-0 ${
+                  index % 2 === 0 ? 'bg-violet-100/70 dark:bg-violet-400/10' : 'bg-transparent'
+                }`}
+                style={{ left: `${start}%`, width: `${width}%` }}
+              />
+            ))}
 
-          {axis.ticks.map((tick) => (
-            <span
-              key={tick}
-              aria-hidden='true'
-              className='absolute inset-y-0 w-px bg-slate-200/70 dark:bg-white/5'
-              style={{ left: `${toYearPercent(tick, axis)}%` }}
-            />
-          ))}
+            {axis.ticks.map((tick) => (
+              <span
+                key={tick}
+                aria-hidden='true'
+                className='absolute inset-y-0 w-px bg-slate-200/70 dark:bg-white/5'
+                style={{ left: `${toYearPercent(tick, axis)}%` }}
+              />
+            ))}
 
-          {segments.slice(1).map(({ era, start }) => (
-            <span
-              key={`divider-${era.id}`}
-              aria-hidden='true'
-              className='absolute inset-y-0 w-px bg-violet-300 dark:bg-violet-400/40'
-              style={{ left: `${start}%` }}
-            />
-          ))}
+            {segments.slice(1).map(({ era, start }) => (
+              <span
+                key={`divider-${era.id}`}
+                aria-hidden='true'
+                className='absolute inset-y-0 w-px bg-violet-300 dark:bg-violet-400/40'
+                style={{ left: `${start}%` }}
+              />
+            ))}
+          </div>
 
           {clusters.flatMap((cluster) =>
             cluster.map(({ book, position }, indexInCluster) => (
               <Link
                 key={book.id}
                 href={`/books/${book.slug}`}
-                title={`${book.title} — ${book.year}`}
-                className='absolute bottom-2.5 h-3.5 w-3.5 rounded-full border-2 border-white bg-violet-500 shadow-sm transition duration-200 hover:scale-125 hover:bg-violet-700 dark:border-neutral-950 dark:bg-violet-400'
+                className='group absolute bottom-2.5 z-10 h-3.5 w-3.5 rounded-full border-2 border-white bg-violet-500 shadow-sm transition duration-200 hover:z-20 hover:scale-125 hover:bg-violet-700 dark:border-neutral-950 dark:bg-violet-400'
                 style={{
                   left: `${position}%`,
                   transform: `translate(-50%, ${-indexInCluster * CLUSTER_OFFSET}px)`
@@ -122,12 +123,23 @@ export const BookTimeline = ({ books }: Props) => {
                 <span className='sr-only'>
                   {book.title}, {book.year}
                 </span>
+                <span
+                  role='tooltip'
+                  className='pointer-events-none absolute bottom-full left-1/2 z-30 mb-2.5 w-max max-w-52 rounded-xl bg-slate-900 px-3 py-2 text-left opacity-0 shadow-lg transition duration-200 group-hover:opacity-100 group-focus-visible:opacity-100 dark:bg-white'
+                  style={{ transform: `translateX(-${position}%)` }}>
+                  <span className='block text-[11px] font-bold leading-4 text-white dark:text-slate-900'>
+                    {book.title}
+                  </span>
+                  <span className='mt-0.5 block text-[10px] font-medium leading-4 text-white/70 dark:text-slate-500'>
+                    {book.year} · {book.author}
+                  </span>
+                </span>
               </Link>
             ))
           )}
         </div>
 
-        <div className='mt-3 flex flex-wrap gap-x-3 gap-y-1.5 @2xl:hidden'>
+        <div className='mt-3 flex flex-wrap gap-x-3 gap-y-1.5 @xl:hidden'>
           {segments.map(({ era, count }) => (
             <span
               key={era.id}

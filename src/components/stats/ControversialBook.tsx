@@ -19,7 +19,7 @@ interface Props {
   members: Member[]
 }
 
-const INITIAL_VISIBLE = 7
+const INITIAL_VISIBLE = 5
 const LOAD_MORE_STEP = 6
 
 type ControversialBookWithScore = BookWithStats & { controversy: number }
