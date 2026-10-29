@@ -4,6 +4,17 @@ import type { Member } from '@/types/member'
 export const homeData = {
   books: [
     {
+      id: 15,
+      title: 'Вечірка на Гелловін',
+      slug: 'vechirka-na-hellovin',
+      description: '"Я бачила вбивство!" - заявила тринадцятирічна Джойс під час вечірки на Гелловін. Звичайно ж, ніхто з гостей їй не повірив, навіть Аріадна Олівер, знана авторка детективів. Ох уже ці підлітки, які постійно прагнуть у будь-який спосіб привернути до себе увагу! Однак, коли гості розійшлися, дівчинку знайшли вбитою. Шокована місіс Олівер звертається по допомогу до свого друга Еркюля Пуаро.',
+      author: 'Агата Крісті',
+      cover: '/images/books/party.webp',
+      year: 1969,
+      discussionDate: '29 Oct 2026',
+      currentlyReading: true
+    },
+    {
       id: 14,
       title: 'Згодом',
       slug: 'zghodom',
@@ -17,8 +28,7 @@ export const homeData = {
         { memberId: 2, value: 3.71, label: '' },
         { memberId: 3, value: 4, label: '' },
         { memberId: 4, value: 3.5, label: '' }
-      ],
-      currentlyReading: true
+      ]
     },
     {
       id: 13,
