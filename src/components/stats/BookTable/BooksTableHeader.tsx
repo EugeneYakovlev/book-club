@@ -2,7 +2,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 
 import type { BookWithStats } from '@/types/book'
-import { getColumnHighlight } from './columnHighlight'
+import { getColumnHighlight } from './СolumnHighlight'
 
 interface Props {
   books: BookWithStats[]

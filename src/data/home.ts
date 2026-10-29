@@ -11,7 +11,13 @@ export const homeData = {
       author: 'Стівен Кінг',
       cover: '/images/books/king.webp',
       year: 2021,
-      discussionDate: '22 Oct 2026',
+      discussionDate: '29 Oct 2026',
+      ratings: [
+        { memberId: 1, value: 4, label: '' },
+        { memberId: 2, value: 3.71, label: '' },
+        { memberId: 3, value: 4, label: '' },
+        { memberId: 4, value: 3.5, label: '' }
+      ],
       currentlyReading: true
     },
     {

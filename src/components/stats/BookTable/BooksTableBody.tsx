@@ -7,7 +7,7 @@ import type { BookWithStats } from '@/types/book'
 import { getMemberRatings } from '@/utils/member'
 import { getRatingLevel } from '@/utils/books'
 import { StarIcon } from '@/components/ui/StarIcon'
-import { getColumnHighlight } from './columnHighlight'
+import { getColumnHighlight } from './СolumnHighlight'
 
 interface Props {
   books: BookWithStats[]
