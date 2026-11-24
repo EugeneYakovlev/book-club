@@ -4,6 +4,17 @@ import type { Member } from '@/types/member'
 export const homeData = {
   books: [
     {
+      id: 16,
+      title: 'Країна снігу',
+      slug: 'kraina-sniku',
+      author: 'Ясунарі Кавабата',
+      cover: '/images/books/snow.webp',
+      description: 'Японія 1930-х років. На засніжений провінційний курорт приїжджає столичний естет Шімамура. Він уповільнюється і безцільно спостерігає за життям навколо. Його почуття коливаються між двома жінками — гейшею Комако і мовчазною красунею Йоко. Невисловлена пристрасть і безмовна туга, заховані серед снігу та споглядальної втіхи, залишають фінал відкритим — у характерному для Кавабати стилі.',
+      currentlyReading: true,
+      year: 1947,
+      discussionDate: '24 Nov 2026'
+    },
+    {
       id: 15,
       title: 'Примха мерця',
       slug: 'prymkha-mertsia',
@@ -12,7 +23,6 @@ export const homeData = {
       cover: '/images/books/death.webp',
       year: 1956,
       discussionDate: '24 Nov 2026',
-      currentlyReading: true,
       ratings: [
         { memberId: 1, value: 4.1, label: '' },
         { memberId: 2, value: 4.05, label: '' },
