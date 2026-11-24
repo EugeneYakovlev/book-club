@@ -12,7 +12,13 @@ export const homeData = {
       cover: '/images/books/death.webp',
       year: 1956,
       discussionDate: '24 Nov 2026',
-      currentlyReading: true
+      currentlyReading: true,
+      ratings: [
+        { memberId: 1, value: 4.1, label: '' },
+        { memberId: 2, value: 4.05, label: '' },
+        { memberId: 3, value: 4, label: '' },
+        { memberId: 4, value: 4, label: '' }
+      ]
     },
     {
       id: 14,
